@@ -2,19 +2,12 @@ package com.retail.loyality.models;
 
 public class CustomerClubcard {
 
-    private int customerId;
+
     private long clubcardId;
     private long primaryClubcardId;
     private int clubcardType;
     private int clubcardStatus;
 
-    public int getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
-    }
 
     public long getClubcardId() {
         return clubcardId;

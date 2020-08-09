@@ -19,7 +19,6 @@ public class CustomerClubcardTest {
         customerClubcard.setClubcardId(123l);
         customerClubcard.setClubcardStatus(1);
         customerClubcard.setClubcardType(1);
-        customerClubcard.setCustomerId(1234);
         customerClubcard.setPrimaryClubcardId(1234);
     }
 
@@ -29,7 +28,6 @@ public class CustomerClubcardTest {
         Assert.assertEquals(123l, customerClubcard.getClubcardId());
         Assert.assertEquals(1, customerClubcard.getClubcardStatus());
         Assert.assertEquals(1, customerClubcard.getClubcardType());
-        Assert.assertEquals(1234, customerClubcard.getCustomerId());
         Assert.assertEquals(1234, customerClubcard.getPrimaryClubcardId());
 
     }

@@ -2,18 +2,11 @@ package com.retail.loyality.models;
 
 public class CustomerContactDetails {
 
-    private long customerId;
+
     private String mobilePhoneNumber;
     private String daytimePhoneNumber;
     private String eveningPhoneNumber;
 
-    public long getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(long customerId) {
-        this.customerId = customerId;
-    }
 
     public String getMobilePhoneNumber() {
         return mobilePhoneNumber;

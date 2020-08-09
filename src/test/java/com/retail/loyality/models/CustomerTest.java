@@ -32,7 +32,6 @@ public class CustomerTest {
         customerAddress.setCountry("India");
 
         customerContactDetails = new CustomerContactDetails();
-        customerContactDetails.setCustomerId(123l);
         customerContactDetails.setEveningPhoneNumber("+918095713751");
         customerContactDetails.setDaytimePhoneNumber("+918095713751");
         customerContactDetails.setMobilePhoneNumber("+918095713751");

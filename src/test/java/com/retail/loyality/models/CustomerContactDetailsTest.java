@@ -17,7 +17,6 @@ public class CustomerContactDetailsTest {
     @Before
     public void setup() {
         customerContactDetails = new CustomerContactDetails();
-        customerContactDetails.setCustomerId(123l);
         customerContactDetails.setEveningPhoneNumber("+918095713751");
         customerContactDetails.setDaytimePhoneNumber("+918095713751");
         customerContactDetails.setMobilePhoneNumber("+918095713751");
@@ -26,7 +25,7 @@ public class CustomerContactDetailsTest {
 
     @Test
     public void customerContactDetailsTest() {
-        Assert.assertEquals(123l, customerContactDetails.getCustomerId());
+
         Assert.assertEquals("+918095713751", customerContactDetails.getEveningPhoneNumber());
         Assert.assertEquals("+918095713751", customerContactDetails.getDaytimePhoneNumber());
         Assert.assertEquals("+918095713751", customerContactDetails.getMobilePhoneNumber());

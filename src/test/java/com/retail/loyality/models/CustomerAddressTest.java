@@ -16,7 +16,6 @@ public class CustomerAddressTest {
     @Before
     public void setup() {
         customerAddress = new CustomerAddress();
-        customerAddress.setCustomerId(123l);
         customerAddress.setAddressLine1("AddressLine1");
         customerAddress.setAddressLine2("AddressLine2");
         customerAddress.setAddressLine3("AddressLine3");
@@ -27,7 +26,7 @@ public class CustomerAddressTest {
 
     @Test
     public void customerAddressTest() {
-        Assert.assertEquals(123l,customerAddress.getCustomerId());
+
         Assert.assertEquals("AddressLine1", customerAddress.getAddressLine1());
         Assert.assertEquals("AddressLine2", customerAddress.getAddressLine2());
         Assert.assertEquals("AddressLine3", customerAddress.getAddressLine3());

@@ -3,7 +3,7 @@ package com.retail.loyality.models;
 public class CustomerAddress {
 
 
-    private long customerId;
+
     private String addressLine1;
     private String addressLine2;
     private String addressLine3;
@@ -12,13 +12,6 @@ public class CustomerAddress {
     private String postalCode;
 
 
-    public long getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(long customerId) {
-        this.customerId = customerId;
-    }
 
     public String getAddressLine1() {
         return addressLine1;
