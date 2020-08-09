@@ -1,7 +1,9 @@
 package com.retail.loyality.service;
 
 import com.retail.loyality.models.Customer;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CustomerServiceImpl implements  CustomerService {
 
     public boolean createCustomer(Customer customer) {
