@@ -16,12 +16,15 @@ public class CustomerTest {
 
     Customer customer;
     Customer customers;
+    Customer customerGenderFemale;
+    Customer customerGenderTransgender;
     CustomerAddress customerAddress;
     CustomerContactDetails customerContactDetails;
-    Date date = new Date();
+    Date date;
 
     @Before
     public void setup() {
+        date= new Date();
 
         customerAddress = new CustomerAddress();
         customerAddress.setAddressLine1("AddressLine1");
@@ -36,7 +39,6 @@ public class CustomerTest {
         customerContactDetails.setDaytimePhoneNumber("+918095713751");
         customerContactDetails.setMobilePhoneNumber("+918095713751");
 
-
         customer = new Customer();
         customer.setAge(30);
         customer.setCustomerId(123l);
@@ -46,7 +48,6 @@ public class CustomerTest {
         customer.setLastName("LastName");
         customer.setCustomerAddress(customerAddress);
         customer.setCustomerContactDetails(customerContactDetails);
-
 
         customers = new Customer();
         customers.setAge(30);
@@ -58,10 +59,30 @@ public class CustomerTest {
         customers.setCustomerAddress(customerAddress);
         customers.setCustomerContactDetails(customerContactDetails);
 
+        customerGenderFemale = new Customer();
+        customerGenderFemale.setAge(30);
+        customerGenderFemale.setCustomerId(123l);
+        customerGenderFemale.setDateOfbirth(date);
+        customerGenderFemale.setGender(Gender.FEMALE);
+        customerGenderFemale.setFirstName("FirtName");
+        customerGenderFemale.setLastName("LastName");
+        customerGenderFemale.setCustomerAddress(customerAddress);
+        customerGenderFemale.setCustomerContactDetails(customerContactDetails);
+
+        customerGenderTransgender = new Customer();
+        customerGenderTransgender.setAge(30);
+        customerGenderTransgender.setCustomerId(123l);
+        customerGenderTransgender.setDateOfbirth(date);
+        customerGenderTransgender.setGender(Gender.TRANSGENDER);
+        customerGenderTransgender.setFirstName("FirtName");
+        customerGenderTransgender.setLastName("LastName");
+        customerGenderTransgender.setCustomerAddress(customerAddress);
+        customerGenderTransgender.setCustomerContactDetails(customerContactDetails);
+
     }
 
     @Test
-    public void customerTest() {
+    public void customerTestForGenderMale() {
         Assert.assertEquals(date,customer.getDateOfbirth());
         Assert.assertEquals(30, customer.getAge());
         Assert.assertEquals(123l, customer.getCustomerId());
@@ -74,7 +95,7 @@ public class CustomerTest {
     }
 
     @Test
-    public void customerTestForDefaultGender(){
+    public void customerTestForGenderUnKown(){
         Assert.assertEquals(date,customers.getDateOfbirth());
         Assert.assertEquals(30, customers.getAge());
         Assert.assertEquals(123l, customers.getCustomerId());
@@ -85,4 +106,28 @@ public class CustomerTest {
         Assert.assertNotNull(customers.getCustomerContactDetails());
     }
 
+    @Test
+    public void customerTestForGenderFemale(){
+        Assert.assertEquals(date,customerGenderFemale.getDateOfbirth());
+        Assert.assertEquals(30, customerGenderFemale.getAge());
+        Assert.assertEquals(123l, customerGenderFemale.getCustomerId());
+        Assert.assertEquals(Gender.FEMALE, customerGenderFemale.getGender());
+        Assert.assertEquals("FirtName", customerGenderFemale.getFirstName());
+        Assert.assertEquals("LastName", customerGenderFemale.getLastName());
+        Assert.assertNotNull(customerGenderFemale.getCustomerAddress());
+        Assert.assertNotNull(customerGenderFemale.getCustomerContactDetails());
+    }
+
+
+    @Test
+    public void customerTestForTransgender(){
+        Assert.assertEquals(date,customerGenderTransgender.getDateOfbirth());
+        Assert.assertEquals(30, customerGenderTransgender.getAge());
+        Assert.assertEquals(123l, customerGenderTransgender.getCustomerId());
+        Assert.assertEquals(Gender.TRANSGENDER, customerGenderTransgender.getGender());
+        Assert.assertEquals("FirtName", customerGenderTransgender.getFirstName());
+        Assert.assertEquals("LastName", customerGenderTransgender.getLastName());
+        Assert.assertNotNull(customerGenderTransgender.getCustomerAddress());
+        Assert.assertNotNull(customerGenderTransgender.getCustomerContactDetails());
+    }
 }

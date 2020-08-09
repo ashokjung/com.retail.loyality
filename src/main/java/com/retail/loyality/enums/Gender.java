@@ -2,5 +2,8 @@ package com.retail.loyality.enums;
 
 public enum  Gender {
 
-   UNKNOWN, MALE,FEMALE,TRANSGENDER
+   UNKNOWN,
+   MALE,
+   FEMALE,
+   TRANSGENDER
 }
