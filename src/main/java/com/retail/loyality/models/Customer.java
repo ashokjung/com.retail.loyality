@@ -1,12 +1,15 @@
 package com.retail.loyality.models;
 
 import com.retail.loyality.enums.Gender;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
+@Document
 public class Customer {
 
-
+    @Id
     private long customerId;
     private String firstName;
     private String lastName;

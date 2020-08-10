@@ -1,2 +1,9 @@
 server:
   port: 8081
+
+spring:
+  data:
+    mongodb:
+      database: loyaltyDb
+      host: localhost
+      port: 27017
