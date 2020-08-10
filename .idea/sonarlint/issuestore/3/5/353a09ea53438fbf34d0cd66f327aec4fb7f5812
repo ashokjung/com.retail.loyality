@@ -1,19 +1,9 @@
 
-m	java:S117#"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(åÊØ¢8Ë½Ûü¼.
-m	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(üÔó8ÔÀ¸ü¼.
-g
-java:S4488"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(œé¡³8ÔÀ¸ü¼.
+e
+java:S44883"HReplace "@RequestMapping(method = RequestMethod.PUT)" with "@PutMapping"(£ŸŸô8ä›š¤½.
 l
-java:S4488"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ƒ‚Ô”øÿÿÿÿ8º•”û¼.
-W
-java:S1191"5Use classes from the Java API instead of Sun classes.(¥›ˆúÿÿÿÿ8Äç¦ı¼.
-l
-java:S4488"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(×ÊÂ±şÿÿÿÿ8‹Œ×ü¼.
-l
-java:S4488""JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(á”üÿÿÿÿ8Ë½Ûü¼.
-T
-java:S1128"7Remove this unused import 'io.swagger.annotations.Api'.(·¦°Î8×ı¤ı¼.
-r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ê¿¾üÿÿÿÿ8‹Œ×ü¼.
-m	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ö…Õ8åÍ‹û¼.
-ƒ
-java:S1128"aRemove this unused import 'com.sun.org.apache.xml.internal.security.utils.IgnoreAllErrorHandler'.(¥›ˆúÿÿÿÿ8¦°·ı¼.
+java:S4488"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(Ñ¨Æùÿÿÿÿ8ä›š¤½.
+j
+java:S4488#"HReplace "@RequestMapping(method = RequestMethod.PUT)" with "@PutMapping"(‡©½ûûÿÿÿÿ8ä›š¤½.
+e
+java:S4488+"HReplace "@RequestMapping(method = RequestMethod.PUT)" with "@PutMapping"(ÈøÁ¹8ä›š¤½.
