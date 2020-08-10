@@ -24,9 +24,9 @@ public class CustomerController {
 
     @ApiOperation(nickname = "Add Customer", value = "Add new Customer", notes = "Add new Customer", tags = {"StoreOperations"})
     @RequestMapping(method = RequestMethod.POST, path = Endpoints.addCustomer)
-    public boolean addCustomer(@RequestBody  Customer customer) {
+    public boolean addCustomer(@RequestBody Customer customer) {
         boolean status;
-        status= customerService.createCustomer(customer);
+        status = customerService.createCustomer(customer);
         return status;
     }
 
@@ -35,7 +35,7 @@ public class CustomerController {
     @RequestMapping(method = RequestMethod.PUT, path = Endpoints.updateCustomer)
     public boolean updateCustomer(@PathVariable long customerId, @RequestBody Customer customer) {
         boolean status;
-        status= customerService.updateCustomer(customerId,customer);
+        status = customerService.updateCustomer(customerId, customer);
         return status;
     }
 
@@ -43,7 +43,7 @@ public class CustomerController {
     @RequestMapping(method = RequestMethod.PUT, path = Endpoints.updateCustomerAddress)
     public boolean updateCustomerAddress(@PathVariable long customerId, @RequestBody CustomerAddress customerAddress) {
         boolean status;
-        status= customerAddressService.updateCustomerAddress(customerId,customerAddress);
+        status = customerAddressService.updateCustomerAddress(customerId, customerAddress);
         return status;
     }
 
@@ -51,7 +51,7 @@ public class CustomerController {
     @RequestMapping(method = RequestMethod.PUT, path = Endpoints.updateCustomerContactDetails)
     public boolean updateCustomerContactDetails(@PathVariable long customerId, @RequestBody CustomerContactDetails customerContactDetails) {
         boolean status;
-        status= customerContactService.updateCustomerContact(customerId,customerContactDetails);
+        status = customerContactService.updateCustomerContact(customerId, customerContactDetails);
         return status;
     }
 }

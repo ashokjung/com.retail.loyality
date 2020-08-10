@@ -1,17 +1,12 @@
 package com.retail.loyality.models;
 
 public class CustomerAddress {
-
-
-
     private String addressLine1;
     private String addressLine2;
     private String addressLine3;
     private String state;
     private String country;
     private String postalCode;
-
-
 
     public String getAddressLine1() {
         return addressLine1;
@@ -60,7 +55,5 @@ public class CustomerAddress {
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
     }
-
-
 
 }

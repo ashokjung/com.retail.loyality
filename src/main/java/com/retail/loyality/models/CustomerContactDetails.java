@@ -2,11 +2,9 @@ package com.retail.loyality.models;
 
 public class CustomerContactDetails {
 
-
     private String mobilePhoneNumber;
     private String daytimePhoneNumber;
     private String eveningPhoneNumber;
-
 
     public String getMobilePhoneNumber() {
         return mobilePhoneNumber;

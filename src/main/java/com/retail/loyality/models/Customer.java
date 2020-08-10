@@ -6,14 +6,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
-@Document
+@Document(collection = "Customer")
 public class Customer {
-
     @Id
     private long customerId;
     private String firstName;
     private String lastName;
-    private int  age;
+    private int age;
     private Date dateOfbirth;
     private Gender gender;
     private CustomerAddress customerAddress;
@@ -64,11 +63,11 @@ public class Customer {
     }
 
     public void setGender(Gender gender) {
-        if(gender==null){
-            this.gender=Gender.UNKNOWN;
+        if (gender == null) {
+            this.gender = Gender.UNKNOWN;
+        } else {
+            this.gender = gender;
         }
-        else{
-        this.gender = gender;}
     }
 
     public CustomerAddress getCustomerAddress() {
