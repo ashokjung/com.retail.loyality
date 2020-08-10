@@ -29,6 +29,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatcher.*;
 import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.Date;
 
@@ -54,10 +56,12 @@ public class CustomerControllerTest {
     CustomerContactDetails customerContactDetails;
     Date date;
     ObjectMapper mapper;
+    long customerId;
     @Before
     public void  setup(){
         date= new Date();
         mapper = new ObjectMapper();
+        customerId=123456789l;
         customerAddress = new CustomerAddress();
         customerAddress.setAddressLine1("AddressLine1");
         customerAddress.setAddressLine2("AddressLine2");
@@ -97,26 +101,38 @@ public class CustomerControllerTest {
         assertThat(result.getResponse().getContentLength()).isNotNull();
     }
 
-    @Ignore
     @Test
     public void updateCustomer() throws Exception{
-        long customerId=123456789l;
+        when(customerService.updateCustomer(customerId,customer)).thenReturn(Boolean.TRUE);
 
-        RequestBuilder requestBuilder;
-        requestBuilder = MockMvcRequestBuilders.put(Endpoints.updateCustomer+customerId)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .accept(MediaType.APPLICATION_JSON)
-                .characterEncoding("UTF-8")
-                .content(mapper.writeValueAsString(customer))
-                .content(getCustomerIdJson(123456789l));
-
-
-        MvcResult result =mockMvc.perform(requestBuilder).andReturn();
-        verify(customerService).updateCustomer((Long) any(),any(Customer.class));
-        assertThat(result.getResponse().getContentLength()).isNotNull();
+        this.mockMvc.perform(put("/api/v1/customer/{customerId}",customer.getCustomerId())
+                .contentType("application/json")
+                .content(mapper.writeValueAsString(customer)))
+                .andExpect(status().isOk());
     }
 
     private String getCustomerIdJson(long customerId) {
         return "{\"id\":\"" + customerId + "\"}";
     }
+
+    @Test
+    public void updateCustomerAddressTest() throws Exception{
+        when(customerAddressService.updateCustomerAddress(customerId,customerAddress)).thenReturn(Boolean.TRUE);
+
+        this.mockMvc.perform(put("/api/v1/customer/address/{customerId}",customer.getCustomerId())
+                .contentType("application/json")
+                .content(mapper.writeValueAsString(customerAddress)))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void updateCustomerContactTest() throws Exception{
+        when(customerContactService.updateCustomerContact(customerId,customerContactDetails)).thenReturn(Boolean.TRUE);
+
+        this.mockMvc.perform(put("/api/v1/customer/contact/{customerId}",customer.getCustomerId())
+                .contentType("application/json")
+                .content(mapper.writeValueAsString(customerContactDetails)))
+                .andExpect(status().isOk());
+    }
+
 }
