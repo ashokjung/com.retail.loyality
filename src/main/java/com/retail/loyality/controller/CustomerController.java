@@ -24,7 +24,7 @@ public class CustomerController {
 
     @ApiOperation(nickname = "Add Customer", value = "Add new Customer", notes = "Add new Customer", tags = {"StoreOperations"})
     @RequestMapping(method = RequestMethod.POST, path = Endpoints.addCustomer)
-    public boolean addCustomer(@RequestBody Customer customer) {
+    public boolean addCustomer(@RequestBody Customer customer) throws Exception {
         boolean status;
         status = customerService.createCustomer(customer);
         return status;
@@ -33,7 +33,7 @@ public class CustomerController {
 
     @ApiOperation(nickname = "Update Customer", value = "Update Existing Customer", notes = "Update Existing Customer", tags = {"StoreOperations"})
     @RequestMapping(method = RequestMethod.PUT, path = Endpoints.updateCustomer)
-    public boolean updateCustomer(@PathVariable long customerId, @RequestBody Customer customer) {
+    public boolean updateCustomer(@PathVariable long customerId, @RequestBody Customer customer) throws Exception {
         boolean status;
         status = customerService.updateCustomer(customerId, customer);
         return status;
@@ -49,7 +49,7 @@ public class CustomerController {
 
     @ApiOperation(nickname = "Update Customer Contact Details", value = "Update Customer Contact Details", notes = "Update Customer Contact Details", tags = {"CustomerWebApplication"})
     @RequestMapping(method = RequestMethod.PUT, path = Endpoints.updateCustomerContactDetails)
-    public boolean updateCustomerContactDetails(@PathVariable long customerId, @RequestBody CustomerContactDetails customerContactDetails) {
+    public boolean updateCustomerContactDetails(@PathVariable long customerId, @RequestBody CustomerContactDetails customerContactDetails) throws Exception {
         boolean status;
         status = customerContactService.updateCustomerContact(customerId, customerContactDetails);
         return status;
