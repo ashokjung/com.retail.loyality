@@ -10,7 +10,6 @@ import com.retail.loyality.service.CustomerAddressService;
 import com.retail.loyality.service.CustomerContactService;
 import com.retail.loyality.service.CustomerService;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,33 +22,18 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.web.util.UriComponents;
-import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatcher.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import java.util.Date;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @AutoConfigureMockMvc
 public class CustomerControllerTest {
-
-    @Autowired
-    private MockMvc mockMvc;
-
-    @MockBean
-    private CustomerAddressService customerAddressService;
-
-    @MockBean
-    private CustomerContactService customerContactService;
-
-    @MockBean
-    private CustomerService customerService;
 
     Customer customer;
     CustomerAddress customerAddress;
@@ -57,11 +41,20 @@ public class CustomerControllerTest {
     Date date;
     ObjectMapper mapper;
     long customerId;
+    @Autowired
+    private MockMvc mockMvc;
+    @MockBean
+    private CustomerAddressService customerAddressService;
+    @MockBean
+    private CustomerContactService customerContactService;
+    @MockBean
+    private CustomerService customerService;
+
     @Before
-    public void  setup(){
-        date= new Date();
+    public void setup() {
+        date = new Date();
         mapper = new ObjectMapper();
-        customerId=123456789l;
+        customerId = 123456789l;
         customerAddress = new CustomerAddress();
         customerAddress.setAddressLine1("AddressLine1");
         customerAddress.setAddressLine2("AddressLine2");
@@ -85,27 +78,27 @@ public class CustomerControllerTest {
         customer.setCustomerAddress(customerAddress);
         customer.setCustomerContactDetails(customerContactDetails);
     }
+
     @Test
-    public void addCustomer () throws Exception
-    {
+    public void addCustomer() throws Exception {
         when(customerService.createCustomer(customer)).thenReturn(true);
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders.post(Endpoints.addCustomer)
-                                        .contentType(MediaType.APPLICATION_JSON)
-                                        .accept(MediaType.APPLICATION_JSON)
-                                        .content(mapper.writeValueAsString(customer));
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .content(mapper.writeValueAsString(customer));
 
 
-        MvcResult result =mockMvc.perform(requestBuilder).andReturn();
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
         verify(customerService).createCustomer(any(Customer.class));
         assertThat(result.getResponse().getContentLength()).isNotNull();
     }
 
     @Test
-    public void updateCustomer() throws Exception{
-        when(customerService.updateCustomer(customerId,customer)).thenReturn(Boolean.TRUE);
+    public void updateCustomer() throws Exception {
+        when(customerService.updateCustomer(customerId, customer)).thenReturn(Boolean.TRUE);
 
-        this.mockMvc.perform(put("/api/v1/customer/{customerId}",customer.getCustomerId())
+        this.mockMvc.perform(put("/api/v1/customer/{customerId}", customer.getCustomerId())
                 .contentType("application/json")
                 .content(mapper.writeValueAsString(customer)))
                 .andExpect(status().isOk());
@@ -116,20 +109,20 @@ public class CustomerControllerTest {
     }
 
     @Test
-    public void updateCustomerAddressTest() throws Exception{
-        when(customerAddressService.updateCustomerAddress(customerId,customerAddress)).thenReturn(Boolean.TRUE);
+    public void updateCustomerAddressTest() throws Exception {
+        when(customerAddressService.updateCustomerAddress(customerId, customerAddress)).thenReturn(Boolean.TRUE);
 
-        this.mockMvc.perform(put("/api/v1/customer/address/{customerId}",customer.getCustomerId())
+        this.mockMvc.perform(put("/api/v1/customer/address/{customerId}", customer.getCustomerId())
                 .contentType("application/json")
                 .content(mapper.writeValueAsString(customerAddress)))
                 .andExpect(status().isOk());
     }
 
     @Test
-    public void updateCustomerContactTest() throws Exception{
-        when(customerContactService.updateCustomerContact(customerId,customerContactDetails)).thenReturn(Boolean.TRUE);
+    public void updateCustomerContactTest() throws Exception {
+        when(customerContactService.updateCustomerContact(customerId, customerContactDetails)).thenReturn(Boolean.TRUE);
 
-        this.mockMvc.perform(put("/api/v1/customer/contact/{customerId}",customer.getCustomerId())
+        this.mockMvc.perform(put("/api/v1/customer/contact/{customerId}", customer.getCustomerId())
                 .contentType("application/json")
                 .content(mapper.writeValueAsString(customerContactDetails)))
                 .andExpect(status().isOk());

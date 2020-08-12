@@ -24,7 +24,7 @@ public class CustomerTest {
 
     @Before
     public void setup() {
-        date= new Date();
+        date = new Date();
 
         customerAddress = new CustomerAddress();
         customerAddress.setAddressLine1("AddressLine1");
@@ -83,7 +83,7 @@ public class CustomerTest {
 
     @Test
     public void customerTestForGenderMale() {
-        Assert.assertEquals(date,customer.getDateOfbirth());
+        Assert.assertEquals(date, customer.getDateOfbirth());
         Assert.assertEquals(30, customer.getAge());
         Assert.assertEquals(123l, customer.getCustomerId());
         Assert.assertEquals(Gender.MALE, customer.getGender());
@@ -95,8 +95,8 @@ public class CustomerTest {
     }
 
     @Test
-    public void customerTestForGenderUnKown(){
-        Assert.assertEquals(date,customers.getDateOfbirth());
+    public void customerTestForGenderUnKown() {
+        Assert.assertEquals(date, customers.getDateOfbirth());
         Assert.assertEquals(30, customers.getAge());
         Assert.assertEquals(123l, customers.getCustomerId());
         Assert.assertEquals(Gender.UNKNOWN, customers.getGender());
@@ -107,8 +107,8 @@ public class CustomerTest {
     }
 
     @Test
-    public void customerTestForGenderFemale(){
-        Assert.assertEquals(date,customerGenderFemale.getDateOfbirth());
+    public void customerTestForGenderFemale() {
+        Assert.assertEquals(date, customerGenderFemale.getDateOfbirth());
         Assert.assertEquals(30, customerGenderFemale.getAge());
         Assert.assertEquals(123l, customerGenderFemale.getCustomerId());
         Assert.assertEquals(Gender.FEMALE, customerGenderFemale.getGender());
@@ -120,8 +120,8 @@ public class CustomerTest {
 
 
     @Test
-    public void customerTestForTransgender(){
-        Assert.assertEquals(date,customerGenderTransgender.getDateOfbirth());
+    public void customerTestForTransgender() {
+        Assert.assertEquals(date, customerGenderTransgender.getDateOfbirth());
         Assert.assertEquals(30, customerGenderTransgender.getAge());
         Assert.assertEquals(123l, customerGenderTransgender.getCustomerId());
         Assert.assertEquals(Gender.TRANSGENDER, customerGenderTransgender.getGender());
