@@ -1,3 +1,5 @@
 
-r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÈçÑÍúÿÿÿÿ8ãıÊ¤½.
-r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ôºßıÿÿÿÿ8ãıÊ¤½.
+e	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Âøõ•üÿÿÿÿ8™ïçš¾.
+˜
+java:S1192"~Define a constant instead of duplicating this literal "Service Layer:Processing adding Customer Contact Information " 3 times.(ØÅM8ôÏêš¾.
+e	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Âøõ•üÿÿÿÿ8é´çš¾.

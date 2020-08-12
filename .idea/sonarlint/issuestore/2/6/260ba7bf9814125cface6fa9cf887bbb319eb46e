@@ -1,8 +1,8 @@
 
-v	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(¢à‡Ì8šÓÕ£½.
-{	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(È÷­ªûÿÿÿÿ8… Ê£½.
 {	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ÁúÇÿÿÿÿÿ8Ú¬Ã£½.
-{	java:S115	"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(èù˜Òıÿÿÿÿ8ïÕÍ£½.
 {	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ÕÓ…úÿÿÿÿ8°ªÇ£½.
+v	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(¢à‡Ì8šÓÕ£½.
+{	java:S115	"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(èù˜Òıÿÿÿÿ8ïÕÍ£½.
+{	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(È÷­ªûÿÿÿÿ8… Ê£½.
 D
 java:S1214""Move constants to a class or enum.(ş“Øäşÿÿÿÿ8Ú¬Ã£½.

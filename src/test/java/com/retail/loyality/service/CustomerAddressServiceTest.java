@@ -2,15 +2,18 @@ package com.retail.loyality.service;
 
 import com.retail.loyality.models.CustomerAddress;
 import com.retail.loyality.repository.CustomerAddressDaoRepository;
+import org.assertj.core.api.Assertions;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -52,5 +55,21 @@ public class CustomerAddressServiceTest {
         when(customerAddressDaoRepository.updateCustomerAddress(customerId, customerAddress)).thenReturn(true);
         status = customerAddressService.updateCustomerAddress(customerId, customerAddress);
         Assert.assertEquals(true, customerAddressService.updateCustomerAddress(customerId, customerAddress));
+    }
+
+    @Test
+    public void addCustomerAddressServiceExceptionTest() throws Exception {
+
+        when(customerAddressDaoRepository.addCustomerAddress(Mockito.anyLong(),Mockito.any())).thenThrow(new Exception("Invalid Customer"));
+        Throwable thrown = catchThrowable(() -> customerAddressService.addCustomerAddress(Mockito.anyLong(),Mockito.any()));
+        Assertions.assertThat(thrown).isInstanceOf(Exception.class);
+    }
+
+
+    @Test
+    public void updateCustomerAddressServiceExceptionTest() throws Exception {
+        when(customerAddressDaoRepository.updateCustomerAddress(Mockito.anyLong(),Mockito.any())).thenThrow(new Exception("Invalid Customer"));
+        Throwable thrown = catchThrowable(() -> customerAddressService.updateCustomerAddress(Mockito.anyLong(),Mockito.any()));
+        Assertions.assertThat(thrown).isInstanceOf(Exception.class);
     }
 }

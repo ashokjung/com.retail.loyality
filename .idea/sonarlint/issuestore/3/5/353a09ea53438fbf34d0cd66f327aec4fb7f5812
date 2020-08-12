@@ -1,9 +1,13 @@
 
-l
-java:S4488"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(Ñ¨Æùÿÿÿÿ8ä›š¤½.
+c
+java:S4488"HReplace "@RequestMapping(method = RequestMethod.PUT)" with "@PutMapping"(£ŸŸô8ä›š¤½.
 j
-java:S4488#"HReplace "@RequestMapping(method = RequestMethod.PUT)" with "@PutMapping"(‡©½ûûÿÿÿÿ8ä›š¤½.
-e
-java:S4488+"HReplace "@RequestMapping(method = RequestMethod.PUT)" with "@PutMapping"(ÈøÁ¹8ä›š¤½.
-e
-java:S44883"HReplace "@RequestMapping(method = RequestMethod.PUT)" with "@PutMapping"(£ŸŸô8ä›š¤½.
+java:S4488"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(Ñ¨Æùÿÿÿÿ8ä›š¤½.
+h
+java:S4488"HReplace "@RequestMapping(method = RequestMethod.PUT)" with "@PutMapping"(‡©½ûûÿÿÿÿ8ä›š¤½.
+`
+java:S4684"@Replace this persistent entity with a simple POJO or DTO object.(öËûÿÿÿÿ8õ¬õ½.
+[
+java:S4684"@Replace this persistent entity with a simple POJO or DTO object.(Âëİä8õ¬õ½.
+c
+java:S4488"HReplace "@RequestMapping(method = RequestMethod.PUT)" with "@PutMapping"(ÈøÁ¹8ä›š¤½.

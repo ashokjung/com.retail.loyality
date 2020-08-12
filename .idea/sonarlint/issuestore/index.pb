@@ -49,3 +49,17 @@ q
 Asrc/test/java/com/retail/loyality/models/CustomerAddressTest.java,7/c/7cdad9f9a94b53fb2e9616c70dc85cff823cd210
 f
 6src/test/java/com/retail/loyality/ApplicationTest.java,f/f/ff7dbf2643fe4eb2505827aba2ff0cc402e9e5b1
+t
+Dsrc/main/java/com/retail/loyality/repository/CustomerRepository.java,8/8/882e92a26ba9dd03643a03ed66edca05ebef8524
+~
+Nsrc/main/java/com/retail/loyality/repository/CustomerAddressDaoRepository.java,a/8/a864c60a21832426ba21322a175bc902cdc738af
+w
+Gsrc/main/java/com/retail/loyality/repository/CustomerDaoRepository.java,4/c/4cb5afdc771e1ac64290c4b72c6a38b4e7ff1e2e
+~
+Nsrc/main/java/com/retail/loyality/repository/CustomerContactDaoRepository.java,2/9/294f220d1d70b59da1d3112f0b5ad537c98b15cd
+{
+Ksrc/main/java/com/retail/loyality/repository/CustomerDaoRepositoryImpl.java,e/e/ee0a0953f7e6239934969d0e999e364579a9dbdc
+‚
+Rsrc/main/java/com/retail/loyality/repository/CustomerContactDaoRepositoryImpl.java,5/4/54bb7dc5434ab6af33c7da3ba4dc06454a7f6879
+‚
+Rsrc/main/java/com/retail/loyality/repository/CustomerAddressDaoRepositoryImpl.java,e/8/e8bed270044730c92b72f95782cf2c0f5448c839
