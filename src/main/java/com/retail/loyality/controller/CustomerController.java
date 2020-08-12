@@ -41,7 +41,7 @@ public class CustomerController {
 
     @ApiOperation(nickname = "Update CustomerAddress", value = "Update Customer Address", notes = "Update Customer Address", tags = {"StoreCustomerSupport"})
     @RequestMapping(method = RequestMethod.PUT, path = Endpoints.updateCustomerAddress)
-    public boolean updateCustomerAddress(@PathVariable long customerId, @RequestBody CustomerAddress customerAddress) {
+    public boolean updateCustomerAddress(@PathVariable long customerId, @RequestBody CustomerAddress customerAddress) throws Exception {
         boolean status;
         status = customerAddressService.updateCustomerAddress(customerId, customerAddress);
         return status;
