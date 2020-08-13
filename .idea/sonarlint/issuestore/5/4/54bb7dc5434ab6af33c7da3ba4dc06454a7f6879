@@ -1,7 +1,7 @@
 
-e	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ş—îäùÿÿÿÿ8İşùö½.
-|
-java:S4144"bUpdate this method so that its implementation is not identical to "addCustomerContact" on line 27.(ÆĞÁ 8Öµÿ÷½.
-e	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ş—îäùÿÿÿÿ8ì¼÷ö½.
-
-java:S1192"Define a constant instead of duplicating this literal "Repository layer:Processing Create Customer Contact Information " 4 times.(ĞÄÛ†8İşùö½.
+g	java:S112*"FDefine and throw a dedicated exception instead of using a generic one.(Ş—îäùÿÿÿÿ8İşùö½.
+g	java:S112="FDefine and throw a dedicated exception instead of using a generic one.(Ş—îäùÿÿÿÿ8ì¼÷ö½.
+Ÿ
+java:S1192"Define a constant instead of duplicating this literal "Repository layer:Processing Create Customer Contact Information " 4 times.(ĞÄÛ†8İşùö½.
+~
+java:S4144/"bUpdate this method so that its implementation is not identical to "addCustomerContact" on line 27.(ÆĞÁ 8Öµÿ÷½.
