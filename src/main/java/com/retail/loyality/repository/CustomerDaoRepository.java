@@ -1,10 +1,12 @@
 package com.retail.loyality.repository;
 
+import com.retail.loyality.exception.CustomerException;
 import com.retail.loyality.models.Customer;
+import com.retail.loyality.response.CustomerResponse;
 
 public interface CustomerDaoRepository {
 
-    boolean createCustomer(Customer customer) throws Exception;
+    void  createCustomer(Customer customer) throws CustomerException;
 
-    boolean updateCustomer(long customerId, Customer customer) throws Exception;
+    void updateCustomer(long customerId, Customer customer) throws CustomerException;
 }

@@ -1,5 +1,6 @@
 package com.retail.loyality.repository;
 
+import com.retail.loyality.exception.CustomerContactException;
 import com.retail.loyality.models.Customer;
 import com.retail.loyality.models.CustomerContactDetails;
 import org.slf4j.Logger;
@@ -24,7 +25,7 @@ public class CustomerContactDaoRepositoryImpl implements CustomerContactDaoRepos
 
     @Autowired
     private MongoTemplate  mongoTemplate;
-    public boolean addCustomerContact(long customerId, CustomerContactDetails customerContactDetails) throws Exception {
+    public boolean addCustomerContact(long customerId, CustomerContactDetails customerContactDetails) throws CustomerContactException {
         try {
             LOG.info("Repository layer:Processing Create Customer Contact Information ");
 
@@ -39,12 +40,12 @@ public class CustomerContactDaoRepositoryImpl implements CustomerContactDaoRepos
             mongoOperations.updateFirst(query, update, Customer.class);
         } catch (Exception e) {
             LOG.error("Repository layer:Processing Create Customer Contact Information ");
-            throw new Exception("Repository layer:Processing Create Customer Contact Information errormessage{} " + e.getMessage());
+            throw new CustomerContactException("Repository layer:Processing Create Customer Contact Information errormessage{} " + e.getMessage());
         }
         return true;
     }
 
-    public boolean updateCustomerContact(long customerId, CustomerContactDetails customerContactDetails) throws Exception {
+    public boolean updateCustomerContact(long customerId, CustomerContactDetails customerContactDetails) throws CustomerContactException {
         try {
             LOG.info("Repository layer:Processing Create Customer Contact Information ");
             Query query = new Query();
@@ -58,7 +59,7 @@ public class CustomerContactDaoRepositoryImpl implements CustomerContactDaoRepos
             mongoOperations.updateFirst(query, update, Customer.class);
         } catch (Exception e) {
             LOG.error("Repository layer:Processing Create Customer Contact Information ");
-            throw new Exception("Repository layer:Processing Create Customer Contact Information errormessage{} " + e.getMessage());
+            throw new CustomerContactException("Repository layer:Processing Create Customer Contact Information errormessage{} " + e.getMessage());
         }
         return true;
     }

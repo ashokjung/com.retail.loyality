@@ -1,6 +1,8 @@
 package com.retail.loyality.repository;
 
+import com.retail.loyality.exception.CustomerException;
 import com.retail.loyality.models.Customer;
+import com.retail.loyality.response.CustomerResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,19 +21,22 @@ public class CustomerDaoRepositoryImpl implements CustomerDaoRepository {
     private MongoOperations mongoOperations;
 
 
-    public boolean createCustomer(Customer customer) throws Exception {
+    public void createCustomer(Customer customer) throws CustomerException {
+
         try {
             LOG.info("Repository layer: Processing Create Customer Information ");
             customerRepository.save(customer);
 
+
         } catch (Exception e) {
             LOG.error("Repository layer: Error while Processing  Create Customer Information ");
-            throw new Exception("" + e.getMessage());
+            throw new CustomerException("" + e.getMessage());
         }
-        return true;
+
     }
 
-    public boolean updateCustomer(long customerId, Customer customer) throws Exception {
+    public void updateCustomer(long customerId, Customer customer) throws CustomerException {
+
         try {
             LOG.info("Repository layer: Processing Create Customer Information ");
             Query query = new Query();
@@ -43,8 +48,8 @@ public class CustomerDaoRepositoryImpl implements CustomerDaoRepository {
         catch (Exception e)
         {
             LOG.error("Repository layer: Error while Processing  Updating Customer Information ");
-            throw new Exception("Repository layer: Error while Processing  Updating Customer Information " + e.getMessage());
+            throw new CustomerException("Repository layer: Error while Processing  Updating Customer Information " + e.getMessage());
         }
-        return true;
+
     }
 }
