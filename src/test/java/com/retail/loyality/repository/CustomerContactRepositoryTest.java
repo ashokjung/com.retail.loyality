@@ -1,5 +1,6 @@
 package com.retail.loyality.repository;
 
+import com.retail.loyality.exception.CustomerContactException;
 import com.retail.loyality.models.CustomerContactDetails;
 import org.assertj.core.api.Assertions;
 import org.junit.Assert;
@@ -47,21 +48,21 @@ public class CustomerContactRepositoryTest {
     }
 
     @Test
-    public void addCustomerContactTest() throws Exception {
+    public void addCustomerContactTest() throws CustomerContactException {
         when(mongoOperations.findAndModify(Mockito.any(), Mockito.any(),Mockito.any())).thenReturn(true);
 
         Assert.assertTrue(customerContactDaoRepository.addCustomerContact(customerId,customerContactDetails));
     }
 
     @Test
-    public void addCustomerContactTestWithException() throws Exception {
+    public void addCustomerContactTestWithException() throws CustomerContactException {
 
         when(mongoOperations.findAndModify(Mockito.any(), Mockito.any(),Mockito.any())).thenReturn(true);
         Throwable thrown = catchThrowable(() ->
                 customerContactDaoRepository.addCustomerContact(customerId,null)
         );
         Assertions.assertThat(thrown)
-                .isInstanceOf(Exception.class);
+                .isInstanceOf(CustomerContactException.class);
 
     }
 

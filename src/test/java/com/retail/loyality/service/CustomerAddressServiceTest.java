@@ -1,5 +1,6 @@
 package com.retail.loyality.service;
 
+import com.retail.loyality.exception.CustomerAddressException;
 import com.retail.loyality.models.CustomerAddress;
 import com.retail.loyality.repository.CustomerAddressDaoRepository;
 import org.assertj.core.api.Assertions;
@@ -42,7 +43,7 @@ public class CustomerAddressServiceTest {
     }
 
     @Test
-    public void addCustomerAddressService() throws Exception {
+    public void addCustomerAddressService() throws CustomerAddressException {
 
         when(customerAddressDaoRepository.addCustomerAddress(customerId, customerAddress)).thenReturn(true);
         status = customerAddressService.addCustomerAddress(customerId, customerAddress);
@@ -51,24 +52,24 @@ public class CustomerAddressServiceTest {
 
 
     @Test
-    public void updateCustomerAddressService() throws Exception {
+    public void updateCustomerAddressService() throws CustomerAddressException {
         when(customerAddressDaoRepository.updateCustomerAddress(customerId, customerAddress)).thenReturn(true);
         status = customerAddressService.updateCustomerAddress(customerId, customerAddress);
         Assert.assertEquals(true, customerAddressService.updateCustomerAddress(customerId, customerAddress));
     }
 
     @Test
-    public void addCustomerAddressServiceExceptionTest() throws Exception {
+    public void addCustomerAddressServiceExceptionTest() throws CustomerAddressException {
 
-        when(customerAddressDaoRepository.addCustomerAddress(Mockito.anyLong(),Mockito.any())).thenThrow(new Exception("Invalid Customer"));
+        when(customerAddressDaoRepository.addCustomerAddress(Mockito.anyLong(),Mockito.any())).thenThrow(new CustomerAddressException("Invalid Customer"));
         Throwable thrown = catchThrowable(() -> customerAddressService.addCustomerAddress(Mockito.anyLong(),Mockito.any()));
         Assertions.assertThat(thrown).isInstanceOf(Exception.class);
     }
 
 
     @Test
-    public void updateCustomerAddressServiceExceptionTest() throws Exception {
-        when(customerAddressDaoRepository.updateCustomerAddress(Mockito.anyLong(),Mockito.any())).thenThrow(new Exception("Invalid Customer"));
+    public void updateCustomerAddressServiceExceptionTest() throws CustomerAddressException {
+        when(customerAddressDaoRepository.updateCustomerAddress(Mockito.anyLong(),Mockito.any())).thenThrow(new CustomerAddressException("Invalid Customer"));
         Throwable thrown = catchThrowable(() -> customerAddressService.updateCustomerAddress(Mockito.anyLong(),Mockito.any()));
         Assertions.assertThat(thrown).isInstanceOf(Exception.class);
     }
