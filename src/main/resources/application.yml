@@ -7,3 +7,5 @@ spring:
       database: loyaltyDb
       host: localhost
       port: 27017
+
+
