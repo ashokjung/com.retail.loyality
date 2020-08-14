@@ -1,14 +1,20 @@
 package com.retail.loyality.controller;
 
 import com.retail.loyality.config.Endpoints;
+import com.retail.loyality.exception.CustomerAddressException;
+import com.retail.loyality.exception.CustomerContactException;
+import com.retail.loyality.exception.CustomerException;
 import com.retail.loyality.models.Customer;
 import com.retail.loyality.models.CustomerAddress;
 import com.retail.loyality.models.CustomerContactDetails;
+import com.retail.loyality.response.CustomerResponse;
 import com.retail.loyality.service.CustomerAddressService;
 import com.retail.loyality.service.CustomerContactService;
 import com.retail.loyality.service.CustomerService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -24,24 +30,24 @@ public class CustomerController {
 
     @ApiOperation(nickname = "Add Customer", value = "Add new Customer", notes = "Add new Customer", tags = {"StoreOperations"})
     @RequestMapping(method = RequestMethod.POST, path = Endpoints.addCustomer)
-    public boolean addCustomer(@RequestBody Customer customer) throws Exception {
-        boolean status;
-        status = customerService.createCustomer(customer);
-        return status;
+    public ResponseEntity<CustomerResponse> addCustomer(@RequestBody Customer customer) throws CustomerException {
+        CustomerResponse customerResponse = null;
+        customerResponse = customerService.createCustomer(customer);
+        return ResponseEntity.ok().body(customerResponse);
     }
 
 
     @ApiOperation(nickname = "Update Customer", value = "Update Existing Customer", notes = "Update Existing Customer", tags = {"StoreOperations"})
     @RequestMapping(method = RequestMethod.PUT, path = Endpoints.updateCustomer)
-    public boolean updateCustomer(@PathVariable long customerId, @RequestBody Customer customer) throws Exception {
-        boolean status;
-        status = customerService.updateCustomer(customerId, customer);
-        return status;
+    public ResponseEntity<CustomerResponse> updateCustomer(@PathVariable long customerId, @RequestBody Customer customer) throws CustomerException {
+        CustomerResponse customerResponse = null;
+        customerResponse = customerService.updateCustomer(customerId,customer);
+        return ResponseEntity.ok().body(customerResponse);
     }
 
     @ApiOperation(nickname = "Update CustomerAddress", value = "Update Customer Address", notes = "Update Customer Address", tags = {"StoreCustomerSupport"})
     @RequestMapping(method = RequestMethod.PUT, path = Endpoints.updateCustomerAddress)
-    public boolean updateCustomerAddress(@PathVariable long customerId, @RequestBody CustomerAddress customerAddress) throws Exception {
+    public boolean updateCustomerAddress(@PathVariable long customerId, @RequestBody CustomerAddress customerAddress) throws CustomerAddressException {
         boolean status;
         status = customerAddressService.updateCustomerAddress(customerId, customerAddress);
         return status;
@@ -49,7 +55,7 @@ public class CustomerController {
 
     @ApiOperation(nickname = "Update Customer Contact Details", value = "Update Customer Contact Details", notes = "Update Customer Contact Details", tags = {"CustomerWebApplication"})
     @RequestMapping(method = RequestMethod.PUT, path = Endpoints.updateCustomerContactDetails)
-    public boolean updateCustomerContactDetails(@PathVariable long customerId, @RequestBody CustomerContactDetails customerContactDetails) throws Exception {
+    public boolean updateCustomerContactDetails(@PathVariable long customerId, @RequestBody CustomerContactDetails customerContactDetails) throws CustomerContactException {
         boolean status;
         status = customerContactService.updateCustomerContact(customerId, customerContactDetails);
         return status;
