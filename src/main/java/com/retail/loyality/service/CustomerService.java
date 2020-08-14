@@ -1,11 +1,13 @@
 package com.retail.loyality.service;
 
+import com.retail.loyality.exception.CustomerException;
 import com.retail.loyality.models.Customer;
+import com.retail.loyality.response.CustomerResponse;
 
 public interface CustomerService {
 
-    boolean createCustomer(Customer customer) throws Exception;
+    CustomerResponse createCustomer(Customer customer) throws CustomerException;
 
-    boolean updateCustomer(long customerId, Customer customer) throws Exception;
+    CustomerResponse updateCustomer(long customerId, Customer customer) throws CustomerException;
 
 }

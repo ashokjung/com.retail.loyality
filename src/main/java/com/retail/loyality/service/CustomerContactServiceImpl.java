@@ -1,5 +1,6 @@
 package com.retail.loyality.service;
 
+import com.retail.loyality.exception.CustomerContactException;
 import com.retail.loyality.models.CustomerContactDetails;
 import com.retail.loyality.repository.CustomerContactDaoRepository;
 import org.slf4j.Logger;
@@ -14,27 +15,27 @@ public class CustomerContactServiceImpl implements CustomerContactService {
     @Autowired
     private CustomerContactDaoRepository customerContactDaoRepository;
 
-    public boolean addCustomerContact(long customerId, CustomerContactDetails customerContactDetails) throws Exception {
+    public boolean addCustomerContact(long customerId, CustomerContactDetails customerContactDetails) throws CustomerContactException {
 
         try {
             LOG.info("Service Layer:Processing Create Customer Contact Information ");
             customerContactDaoRepository.addCustomerContact(customerId,customerContactDetails);
 
-        } catch (Exception e) {
+        } catch (CustomerContactException e) {
             LOG.error("Service Layer:Processing Create Customer Contact Information ");
-            throw new Exception("Service Layer:Processing Create Customer Contact Information errormessage{} " + e.getMessage());
+            throw new CustomerContactException("Service Layer:Processing Create Customer Contact Information errormessage{} " + e.getMessage());
         }
         return true;
     }
 
-    public boolean updateCustomerContact(long customerId, CustomerContactDetails customerContactDetails) throws Exception {
+    public boolean updateCustomerContact(long customerId, CustomerContactDetails customerContactDetails) throws CustomerContactException {
         try {
             LOG.info("Service Layer:Processing Create Customer Contact Information ");
             customerContactDaoRepository.updateCustomerContact(customerId, customerContactDetails);
 
-        } catch (Exception e) {
+        } catch (CustomerContactException e) {
             LOG.error("Service Layer:Processing Create Customer Contact Information ");
-            throw new Exception("Service Layer:Processing Create Customer Contact Information errormessage{} " + e.getMessage());
+            throw new CustomerContactException("Service Layer:Processing Create Customer Contact Information errormessage{} " + e.getMessage());
 
         }
         return true;
