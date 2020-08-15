@@ -3,19 +3,8 @@ package com.retail.loyality.response;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class CustomerResponse {
-    private boolean status;
+    private String status;
     private String message;
-    @JsonIgnore
-    private String errormessage;
-
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
 
     public String getMessage() {
         return message;
@@ -25,11 +14,11 @@ public class CustomerResponse {
         this.message = message;
     }
 
-    public String getErrormessage() {
-        return errormessage;
+    public String getStatus() {
+        return status;
     }
 
-    public void setErrormessage(String errormessage) {
-        this.errormessage = errormessage;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
