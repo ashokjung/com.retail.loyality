@@ -25,7 +25,7 @@ public class CustomerContactDaoRepositoryImpl implements CustomerContactDaoRepos
 
     @Autowired
     private MongoTemplate  mongoTemplate;
-    public boolean addCustomerContact(long customerId, CustomerContactDetails customerContactDetails) throws CustomerContactException {
+    public void addCustomerContact(long customerId, CustomerContactDetails customerContactDetails) throws CustomerContactException {
         try {
             LOG.info("Repository layer:Processing Create Customer Contact Information ");
 
@@ -42,10 +42,10 @@ public class CustomerContactDaoRepositoryImpl implements CustomerContactDaoRepos
             LOG.error("Repository layer:Processing Create Customer Contact Information ");
             throw new CustomerContactException("Repository layer:Processing Create Customer Contact Information errormessage{} " + e.getMessage());
         }
-        return true;
+
     }
 
-    public boolean updateCustomerContact(long customerId, CustomerContactDetails customerContactDetails) throws CustomerContactException {
+    public void updateCustomerContact(long customerId, CustomerContactDetails customerContactDetails) throws CustomerContactException {
         try {
             LOG.info("Repository layer:Processing Create Customer Contact Information ");
             Query query = new Query();
@@ -61,6 +61,6 @@ public class CustomerContactDaoRepositoryImpl implements CustomerContactDaoRepos
             LOG.error("Repository layer:Processing Create Customer Contact Information ");
             throw new CustomerContactException("Repository layer:Processing Create Customer Contact Information errormessage{} " + e.getMessage());
         }
-        return true;
+
     }
 }

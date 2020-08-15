@@ -5,7 +5,7 @@ import com.retail.loyality.models.CustomerAddress;
 
 public interface CustomerAddressDaoRepository {
 
-    boolean addCustomerAddress(long customerId, CustomerAddress customerAddress) throws CustomerAddressException;
+    void addCustomerAddress(long customerId, CustomerAddress customerAddress) throws CustomerAddressException;
 
-    boolean updateCustomerAddress(long customerId, CustomerAddress customerAddress) throws CustomerAddressException;
+    void updateCustomerAddress(long customerId, CustomerAddress customerAddress) throws CustomerAddressException;
 }

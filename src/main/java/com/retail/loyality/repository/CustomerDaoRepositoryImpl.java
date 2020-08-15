@@ -30,7 +30,7 @@ public class CustomerDaoRepositoryImpl implements CustomerDaoRepository {
 
         } catch (Exception e) {
             LOG.error("Repository layer: Error while Processing  Create Customer Information ");
-            throw new CustomerException("" + e.getMessage());
+            throw new CustomerException("Invalid Customer" + e.getMessage());
         }
 
     }
