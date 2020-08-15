@@ -8,4 +8,27 @@ spring:
       host: localhost
       port: 27017
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  metrics:
+    export:
+      atlas:
+        enabled: false
+  endpoint:
+    health:
+      show-details: always
+  trace:
+    http:
+      enabled: true
 
+info:
+  app:
+    name: CustomerLoyalty
+    description: Customer Loyalty
+    encoding: UTF-8
+    version: 1.0.1
+    java:
+      version: 1.8
