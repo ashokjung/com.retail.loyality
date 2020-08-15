@@ -1,12 +1,20 @@
 package com.retail.loyality.repository;
 
+import com.retail.loyality.config.RestMessages;
 import com.retail.loyality.exception.CustomerContactException;
+import com.retail.loyality.exception.CustomerException;
+import com.retail.loyality.models.Customer;
 import com.retail.loyality.models.CustomerContactDetails;
+import com.retail.loyality.response.CustomerResponse;
+import com.retail.loyality.service.CustomerContactService;
+import com.retail.loyality.service.CustomerContactServiceImpl;
 import org.assertj.core.api.Assertions;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,23 +25,19 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.Date;
 
 import static org.assertj.core.api.Assertions.catchThrowable;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class CustomerContactRepositoryTest {
 
     CustomerContactDetails customerContactDetails;
-    Date date;
     long customerId;
-    boolean status;
-
+    CustomerResponse customerResponse;
     @Mock
     private CustomerRepository customerRepository;
-
     @Mock
     private MongoOperations mongoOperations;
-
     @Autowired
     private CustomerContactDaoRepository customerContactDaoRepository;
 
@@ -45,13 +49,15 @@ public class CustomerContactRepositoryTest {
         customerContactDetails.setEveningPhoneNumber("+918095713751");
         customerContactDetails.setDaytimePhoneNumber("+918095713751");
         customerContactDetails.setMobilePhoneNumber("+918095713751");
+        customerResponse = new CustomerResponse();
     }
+
+
 
     @Test
     public void addCustomerContactTest() throws CustomerContactException {
         when(mongoOperations.findAndModify(Mockito.any(), Mockito.any(),Mockito.any())).thenReturn(true);
-
-        Assert.assertTrue(customerContactDaoRepository.addCustomerContact(customerId,customerContactDetails));
+        customerContactDaoRepository.addCustomerContact(customerId,customerContactDetails);
     }
 
     @Test
@@ -63,25 +69,24 @@ public class CustomerContactRepositoryTest {
         );
         Assertions.assertThat(thrown)
                 .isInstanceOf(CustomerContactException.class);
-
     }
 
+
     @Test
-    public void updateCustomerContactTest() throws Exception {
+    public void updateCustomerContactTest() throws CustomerContactException {
         when(mongoOperations.findAndModify(Mockito.any(), Mockito.any(),Mockito.any())).thenReturn(true);
-
-        Assert.assertTrue(customerContactDaoRepository.updateCustomerContact(customerId,customerContactDetails));
+        customerContactDaoRepository.updateCustomerContact(customerId,customerContactDetails);
     }
 
     @Test
-    public void updateCustomerContactTestWithException() throws Exception {
+    public void updateCustomerContactTestWithException() throws CustomerContactException {
 
         when(mongoOperations.findAndModify(Mockito.any(), Mockito.any(),Mockito.any())).thenReturn(true);
         Throwable thrown = catchThrowable(() ->
                 customerContactDaoRepository.updateCustomerContact(customerId,null)
         );
         Assertions.assertThat(thrown)
-                .isInstanceOf(Exception.class);
+                .isInstanceOf(CustomerContactException.class);
 
     }
 
