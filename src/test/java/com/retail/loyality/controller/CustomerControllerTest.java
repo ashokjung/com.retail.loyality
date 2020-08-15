@@ -1,15 +1,19 @@
 package com.retail.loyality.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.retail.loyality.config.Endpoints;
 import com.retail.loyality.enums.Gender;
+import com.retail.loyality.exception.CustomerException;
 import com.retail.loyality.models.Customer;
 import com.retail.loyality.models.CustomerAddress;
 import com.retail.loyality.models.CustomerContactDetails;
+import com.retail.loyality.response.CustomerResponse;
 import com.retail.loyality.service.CustomerAddressService;
 import com.retail.loyality.service.CustomerContactService;
 import com.retail.loyality.service.CustomerService;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,15 +77,15 @@ public class CustomerControllerTest {
         customer.setCustomerId(123l);
         customer.setDateOfbirth(date);
         customer.setGender(Gender.MALE);
-        customer.setFirstName("FirtName");
+        customer.setFirstName("FirstName");
         customer.setLastName("LastName");
         customer.setCustomerAddress(customerAddress);
         customer.setCustomerContactDetails(customerContactDetails);
     }
-/*
+
     @Test
     public void addCustomer() throws Exception {
-        when(customerService.createCustomer(customer)).thenReturn(true);
+        when(customerService.createCustomer(customer)).thenReturn(new CustomerResponse());
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders.post(Endpoints.addCustomer)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -96,7 +100,7 @@ public class CustomerControllerTest {
 
     @Test
     public void updateCustomer() throws Exception {
-        when(customerService.updateCustomer(customerId, customer)).thenReturn(Boolean.TRUE);
+        when(customerService.updateCustomer(customerId, customer)).thenReturn(new CustomerResponse());
 
         this.mockMvc.perform(put("/api/v1/customer/{customerId}", customer.getCustomerId())
                 .contentType("application/json")
@@ -104,13 +108,9 @@ public class CustomerControllerTest {
                 .andExpect(status().isOk());
     }
 
-    private String getCustomerIdJson(long customerId) {
-        return "{\"id\":\"" + customerId + "\"}";
-    }
-
     @Test
     public void updateCustomerAddressTest() throws Exception {
-        when(customerAddressService.updateCustomerAddress(customerId, customerAddress)).thenReturn(Boolean.TRUE);
+        when(customerAddressService.updateCustomerAddress(customerId, customerAddress)).thenReturn(new CustomerResponse());
 
         this.mockMvc.perform(put("/api/v1/customer/address/{customerId}", customer.getCustomerId())
                 .contentType("application/json")
@@ -118,14 +118,15 @@ public class CustomerControllerTest {
                 .andExpect(status().isOk());
     }
 
+
     @Test
     public void updateCustomerContactTest() throws Exception {
-        when(customerContactService.updateCustomerContact(customerId, customerContactDetails)).thenReturn(Boolean.TRUE);
+        when(customerContactService.updateCustomerContact(customerId, customerContactDetails)).thenReturn(new CustomerResponse());
 
         this.mockMvc.perform(put("/api/v1/customer/contact/{customerId}", customer.getCustomerId())
                 .contentType("application/json")
                 .content(mapper.writeValueAsString(customerContactDetails)))
                 .andExpect(status().isOk());
     }
-*/
+
 }
