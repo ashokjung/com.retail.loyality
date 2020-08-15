@@ -47,17 +47,17 @@ public class CustomerController {
 
     @ApiOperation(nickname = "Update CustomerAddress", value = "Update Customer Address", notes = "Update Customer Address", tags = {"StoreCustomerSupport"})
     @RequestMapping(method = RequestMethod.PUT, path = Endpoints.updateCustomerAddress)
-    public boolean updateCustomerAddress(@PathVariable long customerId, @RequestBody CustomerAddress customerAddress) throws CustomerAddressException {
-        boolean status;
-        status = customerAddressService.updateCustomerAddress(customerId, customerAddress);
-        return status;
+    public ResponseEntity<CustomerResponse> updateCustomerAddress(@PathVariable long customerId, @RequestBody CustomerAddress customerAddress) throws CustomerAddressException {
+        CustomerResponse customerResponse = null;
+        customerResponse = customerAddressService.updateCustomerAddress(customerId, customerAddress);
+        return ResponseEntity.ok().body(customerResponse);
     }
 
     @ApiOperation(nickname = "Update Customer Contact Details", value = "Update Customer Contact Details", notes = "Update Customer Contact Details", tags = {"CustomerWebApplication"})
     @RequestMapping(method = RequestMethod.PUT, path = Endpoints.updateCustomerContactDetails)
-    public boolean updateCustomerContactDetails(@PathVariable long customerId, @RequestBody CustomerContactDetails customerContactDetails) throws CustomerContactException {
-        boolean status;
-        status = customerContactService.updateCustomerContact(customerId, customerContactDetails);
-        return status;
+    public ResponseEntity<CustomerResponse> updateCustomerContactDetails(@PathVariable long customerId, @RequestBody CustomerContactDetails customerContactDetails) throws CustomerContactException {
+        CustomerResponse customerResponse=null;
+        customerResponse = customerContactService.updateCustomerContact(customerId, customerContactDetails);
+        return ResponseEntity.ok().body(customerResponse);
     }
 }
