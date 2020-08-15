@@ -2,10 +2,11 @@ package com.retail.loyality.service;
 
 import com.retail.loyality.exception.CustomerAddressException;
 import com.retail.loyality.models.CustomerAddress;
+import com.retail.loyality.response.CustomerResponse;
 
 public interface CustomerAddressService {
 
-    boolean addCustomerAddress(long customerId, CustomerAddress customerAddress) throws CustomerAddressException;
+    CustomerResponse addCustomerAddress(long customerId, CustomerAddress customerAddress) throws CustomerAddressException;
 
-    boolean updateCustomerAddress(long customerId, CustomerAddress customerAddress) throws CustomerAddressException;
+    CustomerResponse updateCustomerAddress(long customerId, CustomerAddress customerAddress) throws CustomerAddressException;
 }
