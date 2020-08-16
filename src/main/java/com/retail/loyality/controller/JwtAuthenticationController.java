@@ -1,8 +1,14 @@
-package com.retail.loyality.security;
+package com.retail.loyality.controller;
 
 
+import com.retail.loyality.security.request.JwtRequest;
+import com.retail.loyality.security.response.JwtResponse;
+import com.retail.loyality.security.service.JwtUserDetailsService;
+import com.retail.loyality.security.util.JwtTokenUtil;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -11,10 +17,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.Serializable;
-
 @RestController
 @CrossOrigin
+@Api(value = "", hidden = true, tags = {"Authentication"})
 public class JwtAuthenticationController {
 
     @Autowired
@@ -23,7 +28,8 @@ public class JwtAuthenticationController {
     private JwtTokenUtil jwtTokenUtil;
     @Autowired
     private JwtUserDetailsService userDetailsService;
-    @ApiOperation(nickname = "Authenticate for token", value = "Authenticate for token", notes = "uthenticate for token", tags = {"Authentication"})
+
+    @ApiOperation(nickname = "Authenticate for token", value = "Authenticate for token", notes = "Authenticate for token", produces = MediaType.APPLICATION_JSON_VALUE, tags = {"Authentication"})
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
@@ -43,32 +49,5 @@ public class JwtAuthenticationController {
         }
     }
 
-    public static class JwtRequest implements Serializable {
 
-
-        private static final long serialVersionUID = 5926468583005150707L;
-        private String username;
-        private String password;
-
-        public JwtRequest()
-        {
-        }
-        public JwtRequest(String username, String password) {
-            this.setUsername(username);
-            this.setPassword(password);
-        }
-        public String getUsername() {
-            return this.username;
-        }
-        public void setUsername(String username) {
-            this.username = username;
-        }
-        public String getPassword() {
-            return this.password;
-        }
-        public void setPassword(String password) {
-            this.password = password;
-        }
-
-    }
 }

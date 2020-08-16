@@ -1,6 +1,6 @@
 package com.retail.loyality.security.config;
 
-import com.retail.loyality.security.JwtAuthenticationEntryPoint;
+import com.retail.loyality.security.authentication.JwtAuthenticationEntryPoint;
 import com.retail.loyality.security.filter.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -63,10 +63,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
     }
+
     @Override
     public void configure(WebSecurity webSecurity) throws Exception {
         webSecurity.ignoring().mvcMatchers(HttpMethod.OPTIONS, "/**");
-        webSecurity.ignoring().mvcMatchers("/swagger-ui.html/**", "/configuration/**", "/swagger-resources/**", "/v2/api-docs","/webjars/**");
+        webSecurity.ignoring().mvcMatchers("/swagger-ui.html/**", "/configuration/**", "/swagger-resources/**", "/v2/api-docs", "/webjars/**");
     }
 
 }

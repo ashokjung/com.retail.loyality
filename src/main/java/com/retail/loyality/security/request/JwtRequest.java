@@ -1,4 +1,4 @@
-package com.retail.loyality.security;
+package com.retail.loyality.security.request;
 
 import java.io.Serializable;
 

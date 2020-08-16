@@ -1,4 +1,4 @@
-package com.retail.loyality.security;
+package com.retail.loyality.security.util;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
