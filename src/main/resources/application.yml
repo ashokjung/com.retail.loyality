@@ -32,3 +32,6 @@ info:
     version: 1.0.1
     java:
       version: 1.8
+
+jwt:
+  secret: clubcardAdminUser
