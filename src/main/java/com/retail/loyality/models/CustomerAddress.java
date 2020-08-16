@@ -1,11 +1,19 @@
 package com.retail.loyality.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class CustomerAddress {
+    @JsonIgnore
     private String addressLine1;
+    @JsonIgnore
     private String addressLine2;
+    @JsonIgnore
     private String addressLine3;
+    @JsonIgnore
     private String state;
+    @JsonIgnore
     private String country;
+    @JsonIgnore
     private String postalCode;
 
     public String getAddressLine1() {
