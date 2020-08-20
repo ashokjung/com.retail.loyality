@@ -3,6 +3,7 @@ package com.retail.loyality.repository;
 import com.retail.loyality.exception.CustomerException;
 import com.retail.loyality.models.Customer;
 import com.retail.loyality.response.CustomerResponse;
+import com.retail.loyality.util.MongoSequenceGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,11 @@ public class CustomerDaoRepositoryImpl implements CustomerDaoRepository {
     @Autowired
     private MongoOperations mongoOperations;
 
+    @Autowired
+    private MongoSequenceGenerator mongoSequenceGenerator;
 
     public void createCustomer(Customer customer) throws CustomerException {
+        customer.setCustomerId(mongoSequenceGenerator.generateSequence(Customer.SEQUENCE_NAME));
 
         try {
             LOG.info("Repository layer: Processing Create Customer Information ");
@@ -52,4 +56,5 @@ public class CustomerDaoRepositoryImpl implements CustomerDaoRepository {
         }
 
     }
+
 }
