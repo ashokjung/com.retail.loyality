@@ -1,15 +1,14 @@
 package com.retail.loyality.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class CustomerClubcard {
-    @JsonIgnore
+
     private long clubcardId;
-    @JsonIgnore
+
     private long primaryClubcardId;
-    @JsonIgnore
+
     private int clubcardType;
-    @JsonIgnore
+
     private int clubcardStatus;
 
     public long getClubcardId() {

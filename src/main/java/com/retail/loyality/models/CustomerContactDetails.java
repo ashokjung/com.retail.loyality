@@ -1,13 +1,12 @@
 package com.retail.loyality.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class CustomerContactDetails {
-    @JsonIgnore
+
     private String mobilePhoneNumber;
-    @JsonIgnore
+
     private String daytimePhoneNumber;
-    @JsonIgnore
+
     private String eveningPhoneNumber;
 
     public String getMobilePhoneNumber() {
