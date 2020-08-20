@@ -74,7 +74,7 @@ public class CustomerRepositoryTest {
 
         customer = new Customer();
         customer.setAge(30);
-        customer.setCustomerId(123l);
+        //customer.setCustomerId(123l);
         customer.setDateOfbirth(date);
         customer.setGender(Gender.MALE);
         customer.setFirstName("FirstName");

@@ -41,7 +41,7 @@ public class CustomerTest {
 
         customer = new Customer();
         customer.setAge(30);
-        customer.setCustomerId(123l);
+        //customer.setCustomerId(123l);
         customer.setDateOfbirth(date);
         customer.setGender(Gender.MALE);
         customer.setFirstName("FirtName");
@@ -51,7 +51,7 @@ public class CustomerTest {
 
         customers = new Customer();
         customers.setAge(30);
-        customers.setCustomerId(123l);
+        //customers.setCustomerId(123l);
         customers.setDateOfbirth(date);
         customers.setGender(null);
         customers.setFirstName("FirtName");
@@ -61,7 +61,7 @@ public class CustomerTest {
 
         customerGenderFemale = new Customer();
         customerGenderFemale.setAge(30);
-        customerGenderFemale.setCustomerId(123l);
+        //customerGenderFemale.setCustomerId(123l);
         customerGenderFemale.setDateOfbirth(date);
         customerGenderFemale.setGender(Gender.FEMALE);
         customerGenderFemale.setFirstName("FirtName");
@@ -71,7 +71,7 @@ public class CustomerTest {
 
         customerGenderTransgender = new Customer();
         customerGenderTransgender.setAge(30);
-        customerGenderTransgender.setCustomerId(123l);
+        //customerGenderTransgender.setCustomerId(123l);
         customerGenderTransgender.setDateOfbirth(date);
         customerGenderTransgender.setGender(Gender.TRANSGENDER);
         customerGenderTransgender.setFirstName("FirtName");
@@ -85,7 +85,7 @@ public class CustomerTest {
     public void customerTestForGenderMale() {
         Assert.assertEquals(date, customer.getDateOfbirth());
         Assert.assertEquals(30, customer.getAge());
-        Assert.assertEquals(123l, customer.getCustomerId());
+        //Assert.assertEquals(123l, customer.getCustomerId());
         Assert.assertEquals(Gender.MALE, customer.getGender());
         Assert.assertEquals("FirtName", customer.getFirstName());
         Assert.assertEquals("LastName", customer.getLastName());
@@ -98,7 +98,7 @@ public class CustomerTest {
     public void customerTestForGenderUnKown() {
         Assert.assertEquals(date, customers.getDateOfbirth());
         Assert.assertEquals(30, customers.getAge());
-        Assert.assertEquals(123l, customers.getCustomerId());
+        //Assert.assertEquals(123l, customers.getCustomerId());
         Assert.assertEquals(Gender.UNKNOWN, customers.getGender());
         Assert.assertEquals("FirtName", customers.getFirstName());
         Assert.assertEquals("LastName", customers.getLastName());
@@ -110,7 +110,7 @@ public class CustomerTest {
     public void customerTestForGenderFemale() {
         Assert.assertEquals(date, customerGenderFemale.getDateOfbirth());
         Assert.assertEquals(30, customerGenderFemale.getAge());
-        Assert.assertEquals(123l, customerGenderFemale.getCustomerId());
+        //Assert.assertEquals(123l, customerGenderFemale.getCustomerId());
         Assert.assertEquals(Gender.FEMALE, customerGenderFemale.getGender());
         Assert.assertEquals("FirtName", customerGenderFemale.getFirstName());
         Assert.assertEquals("LastName", customerGenderFemale.getLastName());
@@ -123,7 +123,7 @@ public class CustomerTest {
     public void customerTestForTransgender() {
         Assert.assertEquals(date, customerGenderTransgender.getDateOfbirth());
         Assert.assertEquals(30, customerGenderTransgender.getAge());
-        Assert.assertEquals(123l, customerGenderTransgender.getCustomerId());
+        //Assert.assertEquals(123l, customerGenderTransgender.getCustomerId());
         Assert.assertEquals(Gender.TRANSGENDER, customerGenderTransgender.getGender());
         Assert.assertEquals("FirtName", customerGenderTransgender.getFirstName());
         Assert.assertEquals("LastName", customerGenderTransgender.getLastName());

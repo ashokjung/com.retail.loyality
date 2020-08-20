@@ -1,37 +1,43 @@
 package com.retail.loyality.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.retail.loyality.config.Endpoints;
 import com.retail.loyality.enums.Gender;
-import com.retail.loyality.exception.CustomerException;
 import com.retail.loyality.models.Customer;
 import com.retail.loyality.models.CustomerAddress;
 import com.retail.loyality.models.CustomerContactDetails;
 import com.retail.loyality.response.CustomerResponse;
+import com.retail.loyality.security.request.JwtRequest;
 import com.retail.loyality.service.CustomerAddressService;
 import com.retail.loyality.service.CustomerContactService;
 import com.retail.loyality.service.CustomerService;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.json.JacksonJsonParser;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.web.FilterChainProxy;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.RequestBuilder;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
 import java.util.Date;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.*;
+import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -45,6 +51,7 @@ public class CustomerControllerTest {
     Date date;
     ObjectMapper mapper;
     long customerId;
+    JwtRequest userDetails;
     @Autowired
     private MockMvc mockMvc;
     @MockBean
@@ -53,6 +60,12 @@ public class CustomerControllerTest {
     private CustomerContactService customerContactService;
     @MockBean
     private CustomerService customerService;
+    @Autowired
+    private WebApplicationContext webApplicationContext;
+    @Autowired
+    private FilterChainProxy springSecurityFilterChain;
+    @MockBean
+    private AuthenticationManager authenticationManager;
 
     @Before
     public void setup() {
@@ -74,60 +87,103 @@ public class CustomerControllerTest {
 
         customer = new Customer();
         customer.setAge(30);
-        customer.setCustomerId(123l);
+        //customer.setCustomerId(123l);
         customer.setDateOfbirth(date);
         customer.setGender(Gender.MALE);
         customer.setFirstName("FirstName");
         customer.setLastName("LastName");
         customer.setCustomerAddress(customerAddress);
         customer.setCustomerContactDetails(customerContactDetails);
+
+        userDetails = new JwtRequest();
+        userDetails.setUsername("clubcardAdminUser");
+        userDetails.setPassword("password");
+        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).addFilter(springSecurityFilterChain).build();
     }
-    // Ignored the test cases for JWT changes
-    @Ignore
+
+
     @Test
     public void addCustomer() throws Exception {
+
+
+        String accessToken = obtainAccessToken(userDetails);
         when(customerService.createCustomer(customer)).thenReturn(new CustomerResponse());
-
-        RequestBuilder requestBuilder = MockMvcRequestBuilders.post(Endpoints.addCustomer)
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
-                .content(mapper.writeValueAsString(customer));
-
-
-        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
-        verify(customerService).createCustomer(any(Customer.class));
-        assertThat(result.getResponse().getContentLength()).isNotNull();
-    }
-    @Ignore
-    @Test
-    public void updateCustomer() throws Exception {
-        when(customerService.updateCustomer(customerId, customer)).thenReturn(new CustomerResponse());
-
-        this.mockMvc.perform(put("/api/v1/customer/{customerId}", customer.getCustomerId())
+        this.mockMvc.perform(post( Endpoints.addCustomer)
                 .contentType("application/json")
+                .header("Authorization", "Bearer " + accessToken)
                 .content(mapper.writeValueAsString(customer)))
                 .andExpect(status().isOk());
     }
-    @Ignore
+
+    @Test
+    public void updateCustomer() throws Exception {
+        String accessToken = obtainAccessToken(userDetails);
+        when(customerService.updateCustomer(customerId, customer)).thenReturn(new CustomerResponse());
+        this.mockMvc.perform(put(Endpoints.updateCustomer, customerId)
+                .contentType("application/json")
+                .header("Authorization", "Bearer " + accessToken)
+                .content(mapper.writeValueAsString(customer)))
+                .andExpect(status().isOk());
+    }
+
     @Test
     public void updateCustomerAddressTest() throws Exception {
-        when(customerAddressService.updateCustomerAddress(customerId, customerAddress)).thenReturn(new CustomerResponse());
-
-        this.mockMvc.perform(put("/api/v1/customer/address/{customerId}", customer.getCustomerId())
+        String accessToken = obtainAccessToken(userDetails);
+        when(customerAddressService.addCustomerAddress(customerId, customerAddress)).thenReturn(new CustomerResponse());
+        this.mockMvc.perform(put( Endpoints.updateCustomerAddress, customerId)
                 .contentType("application/json")
+                .header("Authorization", "Bearer " + accessToken)
                 .content(mapper.writeValueAsString(customerAddress)))
                 .andExpect(status().isOk());
     }
 
-    @Ignore
+
     @Test
     public void updateCustomerContactTest() throws Exception {
-        when(customerContactService.updateCustomerContact(customerId, customerContactDetails)).thenReturn(new CustomerResponse());
-
-        this.mockMvc.perform(put("/api/v1/customer/contact/{customerId}", customer.getCustomerId())
+        String accessToken = obtainAccessToken(userDetails);
+        when(customerContactService.addCustomerContact(customerId, customerContactDetails)).thenReturn(new CustomerResponse());
+        this.mockMvc.perform(put(Endpoints.updateCustomerContactDetails, customerId)
                 .contentType("application/json")
+                .header("Authorization", "Bearer " + accessToken)
                 .content(mapper.writeValueAsString(customerContactDetails)))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    public void updateCustomerContactDetailsTesForBadCrdentials() throws Exception {
+        userDetails.setUsername("test");
+        when(authenticationManager.authenticate(Mockito.any())).thenThrow(new BadCredentialsException("Bad Credentials"));
+        this.mockMvc.perform(post("/authenticate")
+                .contentType("application/json")
+                .content(mapper.writeValueAsString(userDetails)))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(jsonPath("$.message", is("INVALID_CREDENTIALS")));
+    }
+
+    @Test
+    public void updateCustomerContactDetailsTesForDisabledUser() throws Exception {
+        userDetails.setUsername("test");
+        when(authenticationManager.authenticate(Mockito.any())).thenThrow(new DisabledException("USER_DISABLED"));
+        this.mockMvc.perform(post("/authenticate")
+                .contentType("application/json")
+                .content(mapper.writeValueAsString(userDetails)))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(jsonPath("$.message", is("USER_DISABLED")));
+    }
+
+    private String obtainAccessToken(JwtRequest userDetails) throws Exception {
+        ResultActions result
+                =
+                this.mockMvc.perform(post("/authenticate")
+                        .contentType("application/json")
+                        .content(mapper.writeValueAsString(userDetails)))
+                        .andExpect(status().isOk());
+
+        String resultString = result.andReturn().getResponse().getContentAsString();
+
+        JacksonJsonParser jsonParser = new JacksonJsonParser();
+        return jsonParser.parseMap(resultString).get("token").toString();
+
     }
 
 }
