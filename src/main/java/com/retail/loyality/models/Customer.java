@@ -1,15 +1,25 @@
 package com.retail.loyality.models;
 
 import com.retail.loyality.enums.Gender;
+import io.swagger.annotations.ApiModelProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Transient;
 import java.util.Date;
 
 @Document(collection = "Customer")
 public class Customer {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @ApiModelProperty(hidden=true)
     private long customerId;
+
+    @Transient
+    public static final String SEQUENCE_NAME = "users_sequence";
+
     private String firstName;
     private String lastName;
     private int age;
@@ -18,13 +28,15 @@ public class Customer {
     private CustomerAddress customerAddress;
     private CustomerContactDetails customerContactDetails;
 
-    public long getCustomerId() {
+   public long getCustomerId() {
         return customerId;
     }
 
     public void setCustomerId(long customerId) {
         this.customerId = customerId;
     }
+
+
 
     public String getFirstName() {
         return firstName;
