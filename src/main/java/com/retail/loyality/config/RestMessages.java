@@ -4,7 +4,7 @@ public interface RestMessages {
 
     public static final String success = "success";
     public static final String failure = "failure";
-    public static final String createCustomerSuccess = "Customer Updated Successfully";
+    public static final String createCustomerSuccess = "Customer created Successfully";
     public static final String createCustomerFailure = "Failed to Create Customer";
     public static final String updateCustomerSuccess = "Customer Updated Successfully";
     public static final String updateCustomerFailure = "Failed to Update Customer";
