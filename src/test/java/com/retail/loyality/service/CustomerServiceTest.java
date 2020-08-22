@@ -8,6 +8,7 @@ import com.retail.loyality.models.CustomerAddress;
 import com.retail.loyality.models.CustomerContactDetails;
 import com.retail.loyality.repository.CustomerDaoRepository;
 import com.retail.loyality.response.CustomerResponse;
+import com.retail.loyality.util.MongoSequenceGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.Assert;
 import org.junit.Before;
@@ -22,8 +23,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.Date;
 
 import static org.assertj.core.api.Assertions.catchThrowable;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -42,7 +42,8 @@ public class CustomerServiceTest {
     private CustomerDaoRepository customerDaoRepository;
     @InjectMocks
     private CustomerServiceImpl customerService;
-
+    @Mock
+    private MongoSequenceGenerator mongoSequenceGenerator;
     @Before
     public void setup() {
         customerId = 123L;
@@ -82,10 +83,11 @@ public class CustomerServiceTest {
     public void addCustomerServiceTest() throws CustomerException {
 
         doNothing().when(customerDaoRepository).createCustomer(Mockito.any());
-        customerResponse = customerService.createCustomer(customer);
-        Assert.assertEquals(RestMessages.success, customerResponse.getStatus());
-        Assert.assertEquals(RestMessages.createCustomerSuccess, customerResponse.getMessage());
+        when(mongoSequenceGenerator.generateSequence(Mockito.any())).thenReturn(Mockito.anyLong());
+        customerResponse =customerService.createCustomer(customer);
         Assert.assertNotNull(customerResponse);
+        Assert.assertEquals(RestMessages.success,customerResponse.getStatus());
+        Assert.assertEquals(RestMessages.createCustomerSuccess,customerResponse.getMessage());
     }
 
     @Test
