@@ -21,11 +21,10 @@ public class CustomerDaoRepositoryImpl implements CustomerDaoRepository {
     @Autowired
     private MongoOperations mongoOperations;
 
-    @Autowired
-    private MongoSequenceGenerator mongoSequenceGenerator;
+
 
     public void createCustomer(Customer customer) throws CustomerException {
-        customer.setCustomerId(mongoSequenceGenerator.generateSequence(Customer.SEQUENCE_NAME));
+
 
         try {
             LOG.info("Repository layer: Processing Create Customer Information ");
