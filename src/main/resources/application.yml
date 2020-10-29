@@ -4,7 +4,7 @@ server:
 spring:
   data:
     mongodb:
-      uri: mongodb://admin:admin@localhost:27017/loyaltyDb
+      uri: mongodb://adminUser:adminUser@localhost:27017/loyaltyDb
       #database: loyaltyDb
       #host: localhost
       #port: 27017
