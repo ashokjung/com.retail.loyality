@@ -22,7 +22,6 @@ public class CustomerDaoRepositoryImpl implements CustomerDaoRepository {
     private MongoOperations mongoOperations;
 
 
-
     public void createCustomer(Customer customer) throws CustomerException {
 
 
@@ -47,11 +46,10 @@ public class CustomerDaoRepositoryImpl implements CustomerDaoRepository {
             query.fields().include("_id");
 
             Customer customerRepo = mongoOperations.findAndReplace(query, customer);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             LOG.error("Repository layer: Error while Processing  Updating Customer Information ");
-            throw new CustomerException("Repository layer: Error while Processing  Updating Customer Information " + e.getMessage());
+            throw new CustomerException("Repository layer: Error while " +
+                    "Processing  Updating Customer Information " + e.getMessage());
         }
 
     }

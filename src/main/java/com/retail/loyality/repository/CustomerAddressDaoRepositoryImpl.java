@@ -25,7 +25,8 @@ public class CustomerAddressDaoRepositoryImpl implements CustomerAddressDaoRepos
     @Autowired
     private MongoTemplate mongoTemplate;
 
-    public void addCustomerAddress(long customerId, CustomerAddress customerAddress) throws CustomerAddressException {
+    public void addCustomerAddress(long customerId, CustomerAddress customerAddress)
+            throws CustomerAddressException {
         try {
             LOG.info("Repository layer:Processing Add Customer Address Information ");
 
@@ -43,12 +44,14 @@ public class CustomerAddressDaoRepositoryImpl implements CustomerAddressDaoRepos
             mongoOperations.updateFirst(query, update, Customer.class);
         } catch (Exception e) {
             LOG.error("Repository layer:Processing Add Customer Address Information");
-            throw new CustomerAddressException("Repository layer:Processing Add Customer Address Information errorMessage{} " + e.getMessage());
+            throw new CustomerAddressException("Repository layer:Processing " +
+                    "Add Customer Address Information errorMessage{} " + e.getMessage());
         }
 
     }
 
-    public void updateCustomerAddress(long customerId, CustomerAddress customerAddress) throws CustomerAddressException {
+    public void updateCustomerAddress(long customerId, CustomerAddress customerAddress)
+            throws CustomerAddressException {
         try {
             LOG.info("Repository layer:Processing Update Customer Address Information ");
 
@@ -66,7 +69,8 @@ public class CustomerAddressDaoRepositoryImpl implements CustomerAddressDaoRepos
             mongoOperations.updateFirst(query, update, Customer.class);
         } catch (Exception e) {
             LOG.error("Repository layer:Processing Update Customer Address Information  ");
-            throw new CustomerAddressException("Repository layer:Processing Update Customer Address Information  errorMessage{} " + e.getMessage());
+            throw new CustomerAddressException("Repository layer:Processing" +
+                    " Update Customer Address Information  errorMessage{} " + e.getMessage());
         }
 
     }

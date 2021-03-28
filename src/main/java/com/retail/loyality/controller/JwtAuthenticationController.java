@@ -29,9 +29,13 @@ public class JwtAuthenticationController {
     @Autowired
     private JwtUserDetailsService userDetailsService;
 
-    @ApiOperation(nickname = "Authenticate for token", value = "Authenticate for token", notes = "Authenticate for token", produces = MediaType.APPLICATION_JSON_VALUE, tags = {"Authentication"})
+    @ApiOperation(nickname = "Authenticate for token", value = "Authenticate for token",
+            notes = "Authenticate for token",
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            tags = {"Authentication"})
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest)
+            throws Exception {
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
         final UserDetails userDetails = userDetailsService
                 .loadUserByUsername(authenticationRequest.getUsername());
