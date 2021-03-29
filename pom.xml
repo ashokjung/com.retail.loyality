@@ -233,7 +233,17 @@
                                         <limit>
                                             <counter>CLASS</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>60%</minimum>
+                                            <minimum>90%</minimum>
+                                        </limit>
+                                        <limit>
+                                            <counter>LINE</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>90%</minimum>
+                                        </limit>
+                                        <limit>
+                                            <counter>METHOD</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>90%</minimum>
                                         </limit>
                                     </limits>
                                 </rule>
