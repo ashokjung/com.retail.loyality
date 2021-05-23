@@ -6,7 +6,9 @@ import com.retail.loyality.response.CustomerResponse;
 
 public interface CustomerContactService {
 
-    CustomerResponse addCustomerContact(long customerId, CustomerContactDetails customerContactDetails) throws CustomerContactException;
+    CustomerResponse addCustomerContact(long customerId, CustomerContactDetails customerContactDetails)
+            throws CustomerContactException;
 
-    CustomerResponse updateCustomerContact(long customerId, CustomerContactDetails customerContactDetails) throws CustomerContactException;
+    CustomerResponse updateCustomerContact(long customerId, CustomerContactDetails customerContactDetails)
+            throws CustomerContactException;
 }

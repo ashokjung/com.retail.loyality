@@ -27,7 +27,8 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint, Se
 
 
     @Override
-    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
+    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException)
+            throws IOException, ServletException {
 
         response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
     }
@@ -54,7 +55,8 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint, Se
 
 
             @Override
-            protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
+            protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
+                    throws ServletException, IOException {
 
                 final String requestTokenHeader = request.getHeader("Authorization");
                 String username = null;
@@ -79,7 +81,8 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint, Se
                     // if token is valid configure Spring Security to manually set
                     // authentication
                     if (jwtTokenUtil.validateToken(jwtToken, userDetails)) {
-                        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
+                        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
+                                new UsernamePasswordAuthenticationToken(
                                 userDetails, null, userDetails.getAuthorities());
                         usernamePasswordAuthenticationToken
                                 .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
