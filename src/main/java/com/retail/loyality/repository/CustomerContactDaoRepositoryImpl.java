@@ -15,7 +15,7 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class CustomerContactDaoRepositoryImpl implements CustomerContactDaoRepository{
+public class CustomerContactDaoRepositoryImpl implements CustomerContactDaoRepository {
 
     private static final Logger LOG = LoggerFactory.getLogger(CustomerContactDaoRepositoryImpl.class);
     @Autowired
@@ -24,8 +24,10 @@ public class CustomerContactDaoRepositoryImpl implements CustomerContactDaoRepos
     private MongoOperations mongoOperations;
 
     @Autowired
-    private MongoTemplate  mongoTemplate;
-    public void addCustomerContact(long customerId, CustomerContactDetails customerContactDetails) throws CustomerContactException {
+    private MongoTemplate mongoTemplate;
+
+    public void addCustomerContact(long customerId, CustomerContactDetails customerContactDetails)
+            throws CustomerContactException {
         try {
             LOG.info("Repository layer:Processing Create Customer Contact Information ");
 
@@ -34,18 +36,20 @@ public class CustomerContactDaoRepositoryImpl implements CustomerContactDaoRepos
             query.fields().include("_id");
 
             Update update = new Update();
-            update.set("customerContactDetails.mobilePhoneNumber",customerContactDetails.getMobilePhoneNumber());
-            update.set("customerContactDetails.daytimePhoneNumber",customerContactDetails.getDaytimePhoneNumber());
-            update.set("customerContactDetails.eveningPhoneNumber",customerContactDetails.getEveningPhoneNumber());
+            update.set("customerContactDetails.mobilePhoneNumber", customerContactDetails.getMobilePhoneNumber());
+            update.set("customerContactDetails.daytimePhoneNumber", customerContactDetails.getDaytimePhoneNumber());
+            update.set("customerContactDetails.eveningPhoneNumber", customerContactDetails.getEveningPhoneNumber());
             mongoOperations.updateFirst(query, update, Customer.class);
         } catch (Exception e) {
             LOG.error("Repository layer:Processing Create Customer Contact Information ");
-            throw new CustomerContactException("Repository layer:Processing Create Customer Contact Information errormessage{} " + e.getMessage());
+            throw new CustomerContactException("Repository layer:Processing " +
+                    "Create Customer Contact Information errormessage{} " + e.getMessage());
         }
 
     }
 
-    public void updateCustomerContact(long customerId, CustomerContactDetails customerContactDetails) throws CustomerContactException {
+    public void updateCustomerContact(long customerId, CustomerContactDetails customerContactDetails)
+            throws CustomerContactException {
         try {
             LOG.info("Repository layer:Processing Create Customer Contact Information ");
             Query query = new Query();
@@ -53,13 +57,14 @@ public class CustomerContactDaoRepositoryImpl implements CustomerContactDaoRepos
             query.fields().include("_id");
 
             Update update = new Update();
-            update.set("customerContactDetails.mobilePhoneNumber",customerContactDetails.getMobilePhoneNumber());
-            update.set("customerContactDetails.daytimePhoneNumber",customerContactDetails.getDaytimePhoneNumber());
-            update.set("customerContactDetails.eveningPhoneNumber",customerContactDetails.getEveningPhoneNumber());
+            update.set("customerContactDetails.mobilePhoneNumber", customerContactDetails.getMobilePhoneNumber());
+            update.set("customerContactDetails.daytimePhoneNumber", customerContactDetails.getDaytimePhoneNumber());
+            update.set("customerContactDetails.eveningPhoneNumber", customerContactDetails.getEveningPhoneNumber());
             mongoOperations.updateFirst(query, update, Customer.class);
         } catch (Exception e) {
             LOG.error("Repository layer:Processing Create Customer Contact Information ");
-            throw new CustomerContactException("Repository layer:Processing Create Customer Contact Information errormessage{} " + e.getMessage());
+            throw new CustomerContactException("Repository layer:Processing " +
+                    "Create Customer Contact Information errormessage{} " + e.getMessage());
         }
 
     }

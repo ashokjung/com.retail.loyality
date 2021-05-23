@@ -17,7 +17,8 @@ public class CustomerContactServiceImpl implements CustomerContactService {
     @Autowired
     private CustomerContactDaoRepository customerContactDaoRepository;
 
-    public CustomerResponse addCustomerContact(long customerId, CustomerContactDetails customerContactDetails) throws CustomerContactException {
+    public CustomerResponse addCustomerContact(long customerId, CustomerContactDetails customerContactDetails)
+            throws CustomerContactException {
         CustomerResponse customerResponse = new CustomerResponse();
         try {
             LOG.info("Service Layer:Processing Create Customer Contact Information ");
@@ -26,12 +27,14 @@ public class CustomerContactServiceImpl implements CustomerContactService {
             customerResponse.setStatus(RestMessages.success);
         } catch (CustomerContactException e) {
             LOG.error("Service Layer:Processing Create Customer Contact Information ");
-            throw new CustomerContactException("Service Layer:Processing Create Customer Contact Information errormessage{} " + e.getMessage());
+            throw new CustomerContactException("Service Layer:Processing " +
+                    "Create Customer Contact Information errormessage{} " + e.getMessage());
         }
         return customerResponse;
     }
 
-    public CustomerResponse updateCustomerContact(long customerId, CustomerContactDetails customerContactDetails) throws CustomerContactException {
+    public CustomerResponse updateCustomerContact(long customerId, CustomerContactDetails customerContactDetails)
+            throws CustomerContactException {
         CustomerResponse customerResponse = new CustomerResponse();
         try {
             LOG.info("Service Layer:Processing Create Customer Contact Information ");
@@ -40,7 +43,8 @@ public class CustomerContactServiceImpl implements CustomerContactService {
             customerResponse.setStatus(RestMessages.success);
         } catch (CustomerContactException e) {
             LOG.error("Service Layer:Processing Create Customer Contact Information ");
-            throw new CustomerContactException("Service Layer:Processing Create Customer Contact Information errormessage{} " + e.getMessage());
+            throw new CustomerContactException("Service Layer:Processing" +
+                    " Create Customer Contact Information errormessage{} " + e.getMessage());
         }
         return customerResponse;
     }

@@ -30,7 +30,9 @@ public class CustomerController {
     @Autowired
     private CustomerContactService customerContactService;
 
-    @ApiOperation(nickname = "Add Customer", value = "Add new Customer", notes = "Add new Customer", produces = MediaType.APPLICATION_JSON_VALUE, tags = {"Customer"}, authorizations = {@Authorization(value = "jwtToken")})
+    @ApiOperation(nickname = "Add Customer", value = "Add new Customer", notes = "Add new Customer",
+            produces = MediaType.APPLICATION_JSON_VALUE, tags = {"Customer"},
+            authorizations = {@Authorization(value = "jwtToken")})
     @RequestMapping(method = RequestMethod.POST, path = Endpoints.addCustomer)
     public ResponseEntity<?> addCustomer(@RequestBody Customer customer) throws CustomerException {
         CustomerResponse customerResponse = null;
@@ -39,25 +41,40 @@ public class CustomerController {
     }
 
 
-    @ApiOperation(nickname = "Update Customer", value = "Update Existing Customer", notes = "Update Existing Customer", produces = MediaType.APPLICATION_JSON_VALUE, tags = {"Customer"}, authorizations = {@Authorization(value = "jwtToken")})
+    @ApiOperation(nickname = "Update Customer", value = "Update Existing Customer", notes = "Update Existing Customer",
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            tags = {"Customer"},
+            authorizations = {@Authorization(value = "jwtToken")})
     @RequestMapping(method = RequestMethod.PUT, path = Endpoints.updateCustomer)
-    public ResponseEntity<?> updateCustomer(@PathVariable long customerId, @RequestBody Customer customer) throws CustomerException {
+    public ResponseEntity<?> updateCustomer(@PathVariable long customerId, @RequestBody Customer customer)
+            throws CustomerException {
         CustomerResponse customerResponse = null;
         customerResponse = customerService.updateCustomer(customerId, customer);
         return ResponseEntity.ok().body(customerResponse);
     }
 
-    @ApiOperation(nickname = "Update CustomerAddress", value = "Update Customer Address", notes = "Update Customer Address", produces = MediaType.APPLICATION_JSON_VALUE, tags = {"Customer"}, authorizations = {@Authorization(value = "jwtToken")})
+    @ApiOperation(nickname = "Update CustomerAddress", value = "Update Customer Address", notes = "Update Customer Address",
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            tags = {"Customer"},
+            authorizations = {@Authorization(value = "jwtToken")})
     @RequestMapping(method = RequestMethod.PUT, path = Endpoints.updateCustomerAddress)
-    public ResponseEntity<?> updateCustomerAddress(@PathVariable long customerId, @RequestBody CustomerAddress customerAddress) throws CustomerAddressException {
+    public ResponseEntity<?> updateCustomerAddress(@PathVariable long customerId,
+                                                   @RequestBody CustomerAddress customerAddress)
+            throws CustomerAddressException {
         CustomerResponse customerResponse = null;
         customerResponse = customerAddressService.updateCustomerAddress(customerId, customerAddress);
         return ResponseEntity.ok().body(customerResponse);
     }
 
-    @ApiOperation(nickname = "Update Customer Contact Details", value = "Update Customer Contact Details", notes = "Update Customer Contact Details", produces = MediaType.APPLICATION_JSON_VALUE, tags = {"Customer"}, authorizations = {@Authorization(value = "jwtToken")})
+    @ApiOperation(nickname = "Update Customer Contact Details", value = "Update Customer Contact Details",
+            notes = "Update Customer Contact Details",
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            tags = {"Customer"},
+            authorizations = {@Authorization(value = "jwtToken")})
     @RequestMapping(method = RequestMethod.PUT, path = Endpoints.updateCustomerContactDetails)
-    public ResponseEntity<?> updateCustomerContactDetails(@PathVariable long customerId, @RequestBody CustomerContactDetails customerContactDetails) throws CustomerContactException {
+    public ResponseEntity<?> updateCustomerContactDetails(@PathVariable long customerId,
+                                                          @RequestBody CustomerContactDetails customerContactDetails)
+            throws CustomerContactException {
         CustomerResponse customerResponse = null;
         customerResponse = customerContactService.updateCustomerContact(customerId, customerContactDetails);
         return ResponseEntity.ok().body(customerResponse);
