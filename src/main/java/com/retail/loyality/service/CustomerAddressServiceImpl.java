@@ -17,7 +17,8 @@ public class CustomerAddressServiceImpl implements CustomerAddressService {
     @Autowired
     private CustomerAddressDaoRepository customerAddressDaoRepository;
 
-    public CustomerResponse addCustomerAddress(long customerId, CustomerAddress customerAddress) throws CustomerAddressException {
+    public CustomerResponse addCustomerAddress(long customerId, CustomerAddress customerAddress)
+            throws CustomerAddressException {
         CustomerResponse customerResponse = new CustomerResponse();
         try {
             LOG.info("Service Layer:Processing adding Customer Contact Information ");
@@ -26,11 +27,15 @@ public class CustomerAddressServiceImpl implements CustomerAddressService {
             customerResponse.setStatus(RestMessages.success);
         } catch (CustomerAddressException e) {
             LOG.error("Service Layer:Processing adding Customer Contact Information ");
-            throw new CustomerAddressException("Service Layer:Processing adding Customer Contact Information errormessage{} " + e.getMessage());
+            throw new CustomerAddressException("Service Layer:Processing adding " +
+                    "Customer Contact Information errormessage{} "
+                    + e.getMessage());
         }
         return customerResponse;
     }
-    public CustomerResponse updateCustomerAddress(long customerId, CustomerAddress customerAddress) throws CustomerAddressException {
+
+    public CustomerResponse updateCustomerAddress(long customerId, CustomerAddress customerAddress)
+            throws CustomerAddressException {
         CustomerResponse customerResponse = new CustomerResponse();
         try {
             LOG.info("Service Layer:Processing adding Customer Contact Information ");
@@ -39,7 +44,9 @@ public class CustomerAddressServiceImpl implements CustomerAddressService {
             customerResponse.setStatus(RestMessages.success);
         } catch (CustomerAddressException e) {
             LOG.error("Service Layer:Processing adding Customer Contact Information  ");
-            throw new CustomerAddressException("Service Layer:Processing adding Customer Contact Information errormessage{} " + e.getMessage());
+            throw new CustomerAddressException("Service Layer:Processing adding Customer " +
+                    "Contact Information errormessage{} "
+                    + e.getMessage());
         }
         return customerResponse;
     }
