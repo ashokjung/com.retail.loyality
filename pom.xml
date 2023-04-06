@@ -16,7 +16,7 @@
         <tomcat.version>10.0.0-M7</tomcat.version>
         <junit.version>4.13.1</junit.version>
         <junit.platformlauncher.version>1.6.2</junit.platformlauncher.version>
-        <springcontext.version>5.3.12</springcontext.version>
+        <springcontext.version>5.3.13</springcontext.version>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
         <jwt.version>0.9.1</jwt.version>
