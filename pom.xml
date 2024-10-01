@@ -10,13 +10,13 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <jackson.version>2.13.2.1</jackson.version>
+        <jackson.version>2.13.4.2</jackson.version>
         <swagger.version>2.10.5</swagger.version>
-        <spring.version>2.7.16</spring.version>
+        <spring.version>3.0.10</spring.version>
         <tomcat.version>10.0.0-M7</tomcat.version>
         <junit.version>4.13.1</junit.version>
         <junit.platformlauncher.version>1.6.2</junit.platformlauncher.version>
-        <springcontext.version>5.3.14</springcontext.version>
+        <springcontext.version>5.3.27</springcontext.version>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
         <jwt.version>0.9.1</jwt.version>
