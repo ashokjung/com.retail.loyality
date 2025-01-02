@@ -19,7 +19,7 @@
         <springcontext.version>6.1.14</springcontext.version>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
-        <jwt.version>0.12.0</jwt.version>
+        <jwt.version>0.12.6</jwt.version>
     </properties>
 
     <dependencies>
