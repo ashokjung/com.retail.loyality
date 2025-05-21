@@ -30,7 +30,7 @@ public class JwtAuthenticationController {
     private JwtUserDetailsService userDetailsService;
 
     @Operation(summary = "Authenticate for token", description = "Authenticate for token",
-            notes = "Authenticate for token",
+
             tags = {"Authentication"})
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest)
