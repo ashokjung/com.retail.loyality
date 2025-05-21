@@ -11,10 +11,12 @@ import com.retail.loyality.response.CustomerResponse;
 import com.retail.loyality.service.CustomerAddressService;
 import com.retail.loyality.service.CustomerContactService;
 import com.retail.loyality.service.CustomerService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.Authorization;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,9 +32,9 @@ public class CustomerController {
     @Autowired
     private CustomerContactService customerContactService;
 
-    @ApiOperation(nickname = "Add Customer", value = "Add new Customer", notes = "Add new Customer",
+ @Operation(summary = "Add new Customer", description = "Add new Customer",
             produces = MediaType.APPLICATION_JSON_VALUE, tags = {"Customer"},
-            authorizations = {@Authorization(value = "jwtToken")})
+            security = @SecurityRequirement(name = "jwtToken"))
     @RequestMapping(method = RequestMethod.POST, path = Endpoints.addCustomer)
     public ResponseEntity<?> addCustomer(@RequestBody Customer customer) throws CustomerException {
         CustomerResponse customerResponse = null;
@@ -41,9 +43,9 @@ public class CustomerController {
     }
 
 
-    @ApiOperation(nickname = "Update Customer", value = "Update Existing Customer", notes = "Update Existing Customer",
+ @Operation(summary = "Update Existing Customer", description = "Update Existing Customer",
             produces = MediaType.APPLICATION_JSON_VALUE,
-            tags = {"Customer"},
+ tags = {"Customer"},
             authorizations = {@Authorization(value = "jwtToken")})
     @RequestMapping(method = RequestMethod.PUT, path = Endpoints.updateCustomer)
     public ResponseEntity<?> updateCustomer(@PathVariable long customerId, @RequestBody Customer customer)
@@ -53,9 +55,9 @@ public class CustomerController {
         return ResponseEntity.ok().body(customerResponse);
     }
 
-    @ApiOperation(nickname = "Update CustomerAddress", value = "Update Customer Address", notes = "Update Customer Address",
+ @Operation(summary = "Update Customer Address", description = "Update Customer Address",
             produces = MediaType.APPLICATION_JSON_VALUE,
-            tags = {"Customer"},
+ tags = {"Customer"},
             authorizations = {@Authorization(value = "jwtToken")})
     @RequestMapping(method = RequestMethod.PUT, path = Endpoints.updateCustomerAddress)
     public ResponseEntity<?> updateCustomerAddress(@PathVariable long customerId,
@@ -66,10 +68,10 @@ public class CustomerController {
         return ResponseEntity.ok().body(customerResponse);
     }
 
-    @ApiOperation(nickname = "Update Customer Contact Details", value = "Update Customer Contact Details",
-            notes = "Update Customer Contact Details",
+ @Operation(summary = "Update Customer Contact Details", description = "Update Customer Contact Details",
+ notes = "Update Customer Contact Details",
             produces = MediaType.APPLICATION_JSON_VALUE,
-            tags = {"Customer"},
+ tags = {"Customer"},
             authorizations = {@Authorization(value = "jwtToken")})
     @RequestMapping(method = RequestMethod.PUT, path = Endpoints.updateCustomerContactDetails)
     public ResponseEntity<?> updateCustomerContactDetails(@PathVariable long customerId,

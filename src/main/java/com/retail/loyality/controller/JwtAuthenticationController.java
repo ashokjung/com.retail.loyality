@@ -5,8 +5,8 @@ import com.retail.loyality.security.request.JwtRequest;
 import com.retail.loyality.security.response.JwtResponse;
 import com.retail.loyality.security.service.JwtUserDetailsService;
 import com.retail.loyality.security.util.JwtTokenUtil;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
-@Api(value = "", hidden = true, tags = {"Authentication"})
+@Tag(name = "Authentication")
 public class JwtAuthenticationController {
 
     @Autowired
@@ -29,9 +29,8 @@ public class JwtAuthenticationController {
     @Autowired
     private JwtUserDetailsService userDetailsService;
 
-    @ApiOperation(nickname = "Authenticate for token", value = "Authenticate for token",
+    @Operation(summary = "Authenticate for token", description = "Authenticate for token",
             notes = "Authenticate for token",
-            produces = MediaType.APPLICATION_JSON_VALUE,
             tags = {"Authentication"})
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest)

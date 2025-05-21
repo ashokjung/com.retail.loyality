@@ -2,7 +2,7 @@ package com.retail.loyality.vo;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Id;
+import jakarta.persistence.Id;
 
 @Document(collection = "database_sequences")
 public class DatabaseSequence {

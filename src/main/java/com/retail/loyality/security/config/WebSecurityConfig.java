@@ -12,7 +12,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,7 +21,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig {
 
 
     @Autowired
@@ -46,28 +45,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
+    public AuthenticationManager authenticationManager(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+        return authenticationManagerBuilder.build();
     }
 
-    @Override
-    protected void configure(HttpSecurity httpSecurity) throws Exception {
-
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable()
                 // dont authenticate this particular request
                 .authorizeRequests().antMatchers("/authenticate").permitAll()
                 .anyRequest().authenticated().and()
                 .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-
+        httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);;
+        return httpSecurity.build();
     }
 
-    @Override
-    public void configure(WebSecurity webSecurity) throws Exception {
-        webSecurity.ignoring().mvcMatchers(HttpMethod.OPTIONS, "/**");
-        webSecurity.ignoring().mvcMatchers("/swagger-ui.html/**", "/configuration/**", "/swagger-resources/**","/v1/api-docs","/actuator/*", "/v2/api-docs", "/webjars/**");
+    @Bean
+    public WebSecurity webSecurityCustomizer(WebSecurity webSecurity) throws Exception {
+        webSecurity.ignoring().mvcMatchers(HttpMethod.OPTIONS, "/**")
+                .mvcMatchers("/swagger-ui.html/**", "/configuration/**", "/swagger-resources/**", "/v1/api-docs", "/actuator/*", "/v2/api-docs", "/webjars/**")
+                .mvcMatchers("/swagger-ui/**", "/v3/api-docs/**"); // Add new paths for OpenAPI 3
+
+        return webSecurity;
     }
 
 }
