@@ -74,21 +74,12 @@
         <!--End Spring Configuration -->
 
 
-        <!-- Dependency for Swagger  -->
+        <!-- Dependency for OpenAPI  -->
         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>${swagger.version}</version>
-            <scope>compile</scope>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>1.7.0</version>
         </dependency>
-
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>${swagger.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
 
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -105,7 +96,7 @@
             <artifactId>jackson-core</artifactId>
             <version>${jackson.version}</version>
         </dependency>
-        <!-- Dependency for Swagger  -->
+        <!-- Dependency for OpenAPI  -->
         <!-- Start Mongo DB -->
          <dependency>
              <groupId>org.springframework.boot</groupId>
