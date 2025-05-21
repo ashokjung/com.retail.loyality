@@ -54,8 +54,10 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable()
                 // dont authenticate this particular request
-                .authorizeRequests().antMatchers("/authenticate").permitAll()
-                .anyRequest().authenticated().and()
+                .authorizeHttpRequests((authz) -> authz
+                        .requestMatchers("/authenticate").permitAll()
+                        .anyRequest().authenticated()
+                )
                 .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);;
@@ -64,9 +66,10 @@ public class WebSecurityConfig {
 
     @Bean
     public WebSecurity webSecurityCustomizer(WebSecurity webSecurity) throws Exception {
-        webSecurity.ignoring().mvcMatchers(HttpMethod.OPTIONS, "/**")
-                .mvcMatchers("/swagger-ui.html/**", "/configuration/**", "/swagger-resources/**", "/v1/api-docs", "/actuator/*", "/v2/api-docs", "/webjars/**")
-                .mvcMatchers("/swagger-ui/**", "/v3/api-docs/**"); // Add new paths for OpenAPI 3
+        webSecurity.ignoring()
+                .requestMatchers(HttpMethod.OPTIONS, "/**")
+                .requestMatchers("/swagger-ui.html/**", "/configuration/**", "/swagger-resources/**", "/v1/api-docs", "/actuator/*", "/v2/api-docs", "/webjars/**")
+                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**"); // Add new paths for OpenAPI 3
 
         return webSecurity;
     }
