@@ -1,8 +1,8 @@
 package com.retail.loyality.repository;
 
-import com.retail.loyality.models.Customer;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.repository.MongoRepository;
+
+import com.retail.loyality.models.Customer;
 
 public interface CustomerRepository extends MongoRepository<Customer, Long> {
 
