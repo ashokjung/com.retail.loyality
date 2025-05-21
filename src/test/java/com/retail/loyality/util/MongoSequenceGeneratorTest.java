@@ -1,19 +1,19 @@
 package com.retail.loyality.util;
 
-import com.retail.loyality.vo.DatabaseSequence;
+import static org.mockito.Mockito.when;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.mockito.Mockito.when;
+import com.retail.loyality.vo.DatabaseSequence;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
