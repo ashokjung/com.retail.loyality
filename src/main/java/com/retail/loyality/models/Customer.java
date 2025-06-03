@@ -1,21 +1,20 @@
 package com.retail.loyality.models;
 
 import com.retail.loyality.enums.Gender;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Transient;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Transient;
 import java.util.Date;
 
 @Document(collection = "Customer")
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @ApiModelProperty(hidden=true)
-    private long customerId;
+    @Schema(hidden = true) private long customerId;
 
     @Transient
     public static final String SEQUENCE_NAME = "users_sequence";

@@ -1,25 +1,30 @@
 package com.retail.loyality.controller;
 
 
-import com.retail.loyality.security.request.JwtRequest;
-import com.retail.loyality.security.response.JwtResponse;
-import com.retail.loyality.security.service.JwtUserDetailsService;
-import com.retail.loyality.security.util.JwtTokenUtil;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.retail.loyality.security.request.JwtRequest;
+import com.retail.loyality.security.response.JwtResponse;
+import com.retail.loyality.security.service.JwtUserDetailsService;
+import com.retail.loyality.security.util.JwtTokenUtil;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @CrossOrigin
-@Api(value = "", hidden = true, tags = {"Authentication"})
+@Tag(name = "Authentication")
 public class JwtAuthenticationController {
 
     @Autowired
@@ -29,9 +34,8 @@ public class JwtAuthenticationController {
     @Autowired
     private JwtUserDetailsService userDetailsService;
 
-    @ApiOperation(nickname = "Authenticate for token", value = "Authenticate for token",
-            notes = "Authenticate for token",
-            produces = MediaType.APPLICATION_JSON_VALUE,
+    @Operation(summary = "Authenticate for token", description = "Authenticate for token",
+
             tags = {"Authentication"})
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest)

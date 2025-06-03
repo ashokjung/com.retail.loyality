@@ -11,15 +11,15 @@ import com.retail.loyality.response.CustomerResponse;
 import com.retail.loyality.service.CustomerAddressService;
 import com.retail.loyality.service.CustomerContactService;
 import com.retail.loyality.service.CustomerService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.Authorization;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@Api(value = "", hidden = true, tags = {"Customer"})
+@Tag(name = "Customer Controller", description = "Operations related to customers")
 @RestController
 public class CustomerController {
 
@@ -30,10 +30,10 @@ public class CustomerController {
     @Autowired
     private CustomerContactService customerContactService;
 
-    @ApiOperation(nickname = "Add Customer", value = "Add new Customer", notes = "Add new Customer",
-            produces = MediaType.APPLICATION_JSON_VALUE, tags = {"Customer"},
-            authorizations = {@Authorization(value = "jwtToken")})
-    @RequestMapping(method = RequestMethod.POST, path = Endpoints.addCustomer)
+    @Operation(summary = "Add new Customer", description = "Add new Customer",
+                tags = {"Customer"},
+                security = @SecurityRequirement(name = "jwtToken"))
+    @RequestMapping(method = RequestMethod.POST, path = Endpoints.addCustomer, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> addCustomer(@RequestBody Customer customer) throws CustomerException {
         CustomerResponse customerResponse = null;
         customerResponse = customerService.createCustomer(customer);
@@ -41,11 +41,10 @@ public class CustomerController {
     }
 
 
-    @ApiOperation(nickname = "Update Customer", value = "Update Existing Customer", notes = "Update Existing Customer",
-            produces = MediaType.APPLICATION_JSON_VALUE,
-            tags = {"Customer"},
-            authorizations = {@Authorization(value = "jwtToken")})
-    @RequestMapping(method = RequestMethod.PUT, path = Endpoints.updateCustomer)
+    @Operation(summary = "Update Existing Customer", description = "Update Existing Customer",
+                tags = {"Customer"},
+                security = @SecurityRequirement(name = "jwtToken"))
+    @RequestMapping(method = RequestMethod.PUT, path = Endpoints.updateCustomer, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> updateCustomer(@PathVariable long customerId, @RequestBody Customer customer)
             throws CustomerException {
         CustomerResponse customerResponse = null;
@@ -53,11 +52,10 @@ public class CustomerController {
         return ResponseEntity.ok().body(customerResponse);
     }
 
-    @ApiOperation(nickname = "Update CustomerAddress", value = "Update Customer Address", notes = "Update Customer Address",
-            produces = MediaType.APPLICATION_JSON_VALUE,
-            tags = {"Customer"},
-            authorizations = {@Authorization(value = "jwtToken")})
-    @RequestMapping(method = RequestMethod.PUT, path = Endpoints.updateCustomerAddress)
+    @Operation(summary = "Update Customer Address", description = "Update Customer Address",
+                tags = {"Customer"},
+                security = @SecurityRequirement(name = "jwtToken"))
+    @RequestMapping(method = RequestMethod.PUT, path = Endpoints.updateCustomerAddress, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> updateCustomerAddress(@PathVariable long customerId,
                                                    @RequestBody CustomerAddress customerAddress)
             throws CustomerAddressException {
@@ -65,13 +63,11 @@ public class CustomerController {
         customerResponse = customerAddressService.updateCustomerAddress(customerId, customerAddress);
         return ResponseEntity.ok().body(customerResponse);
     }
-
-    @ApiOperation(nickname = "Update Customer Contact Details", value = "Update Customer Contact Details",
-            notes = "Update Customer Contact Details",
-            produces = MediaType.APPLICATION_JSON_VALUE,
-            tags = {"Customer"},
-            authorizations = {@Authorization(value = "jwtToken")})
-    @RequestMapping(method = RequestMethod.PUT, path = Endpoints.updateCustomerContactDetails)
+    
+    @Operation(summary = "Update Customer Contact Details", description = "Update Customer Contact Details",
+                
+                tags = {"Customer"},
+                security = @SecurityRequirement(name = "jwtToken"))
     public ResponseEntity<?> updateCustomerContactDetails(@PathVariable long customerId,
                                                           @RequestBody CustomerContactDetails customerContactDetails)
             throws CustomerContactException {

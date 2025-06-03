@@ -1,20 +1,12 @@
 package com.retail.loyality.repository;
 
-import com.retail.loyality.config.RestMessages;
-import com.retail.loyality.exception.CustomerContactException;
-import com.retail.loyality.exception.CustomerException;
-import com.retail.loyality.models.Customer;
-import com.retail.loyality.models.CustomerContactDetails;
-import com.retail.loyality.response.CustomerResponse;
-import com.retail.loyality.service.CustomerContactService;
-import com.retail.loyality.service.CustomerContactServiceImpl;
+import static org.assertj.core.api.Assertions.catchThrowable;
+import static org.mockito.Mockito.when;
+
 import org.assertj.core.api.Assertions;
-import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +14,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Date;
-
-import static org.assertj.core.api.Assertions.catchThrowable;
-import static org.mockito.Mockito.*;
+import com.retail.loyality.exception.CustomerContactException;
+import com.retail.loyality.models.CustomerContactDetails;
+import com.retail.loyality.response.CustomerResponse;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)

@@ -1,16 +1,14 @@
 package com.retail.loyality.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.retail.loyality.config.Endpoints;
-import com.retail.loyality.enums.Gender;
-import com.retail.loyality.models.Customer;
-import com.retail.loyality.models.CustomerAddress;
-import com.retail.loyality.models.CustomerContactDetails;
-import com.retail.loyality.response.CustomerResponse;
-import com.retail.loyality.security.request.JwtRequest;
-import com.retail.loyality.service.CustomerAddressService;
-import com.retail.loyality.service.CustomerContactService;
-import com.retail.loyality.service.CustomerService;
+import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.Date;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,14 +29,17 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.util.Date;
-
-import static org.hamcrest.Matchers.is;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.retail.loyality.config.Endpoints;
+import com.retail.loyality.enums.Gender;
+import com.retail.loyality.models.Customer;
+import com.retail.loyality.models.CustomerAddress;
+import com.retail.loyality.models.CustomerContactDetails;
+import com.retail.loyality.response.CustomerResponse;
+import com.retail.loyality.security.request.JwtRequest;
+import com.retail.loyality.service.CustomerAddressService;
+import com.retail.loyality.service.CustomerContactService;
+import com.retail.loyality.service.CustomerService;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
